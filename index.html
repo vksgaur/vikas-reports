@@ -12,324 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
-    <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --bg: #0d0d12;
-            --surface: #14141d;
-            --surface2: #1c1c28;
-            --border: rgba(255, 255, 255, 0.07);
-            --text: #e8e8f0;
-            --muted: #8888a4;
-            --gold: #c9a84c;
-            --gold-dim: rgba(201, 168, 76, 0.15);
-        }
-
-        :root.light {
-            --bg: #faf8f3;
-            --surface: #ffffff;
-            --surface2: #f2ede3;
-            --border: rgba(0, 0, 0, 0.08);
-            --text: #1a1610;
-            --muted: #6b6352;
-            --gold: #9a6f0f;
-            --gold-dim: rgba(154, 111, 15, 0.12);
-        }
-
-        /* ── THEME TOGGLE ── */
-        #theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            color: var(--gold);
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-            transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            outline: none;
-        }
-
-        #theme-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 28px rgba(0, 0, 0, 0.35);
-            border-color: var(--gold);
-        }
-
-        #theme-toggle .icon {
-            transition: transform 0.4s ease, opacity 0.3s ease;
-            line-height: 1;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* ── HERO ── */
-        .hero {
-            position: relative;
-            padding: 100px 24px 80px;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero-label {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold);
-            border: 1px solid rgba(201, 168, 76, 0.35);
-            border-radius: 100px;
-            padding: 6px 18px;
-            margin-bottom: 32px;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(36px, 6vw, 72px);
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--text) 0%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            max-width: 560px;
-            margin: 0 auto 12px;
-            font-size: 17px;
-            line-height: 1.7;
-            color: var(--muted);
-            font-weight: 300;
-        }
-
-        .hero-meta {
-            font-size: 13px;
-            color: rgba(136, 136, 164, 0.6);
-            margin-top: 28px;
-        }
-
-        .divider {
-            width: 60px;
-            height: 2px;
-            background: var(--gold);
-            margin: 40px auto;
-            opacity: 0.4;
-            border-radius: 2px;
-        }
-
-        /* ── GRID ── */
-        .grid-section {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px 100px;
-        }
-
-        .section-label {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 32px;
-            text-align: center;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent, var(--gold)), transparent);
-            opacity: 0;
-            transition: opacity 0.25s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(201, 168, 76, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card-icon {
-            font-size: 36px;
-            line-height: 1;
-        }
-
-        .card-tag {
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            color: var(--accent, var(--gold));
-            background: rgba(201, 168, 76, 0.1);
-            border-radius: 100px;
-            padding: 4px 12px;
-            display: inline-block;
-            width: fit-content;
-        }
-
-        .card h2 {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 20px;
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--text);
-        }
-
-        .card p {
-            font-size: 14px;
-            line-height: 1.7;
-            color: var(--muted);
-            font-weight: 300;
-            flex: 1;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
-            font-size: 12px;
-            color: rgba(136, 136, 164, 0.6);
-        }
-
-        .card-read {
-            color: var(--accent, var(--gold));
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: gap 0.2s;
-        }
-
-        .card:hover .card-read {
-            gap: 10px;
-        }
-
-        /* ── ABOUT AUTHOR ── */
-        .about-author {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            max-width: 560px;
-            margin: 28px auto 0;
-            text-align: left;
-            background: rgba(201, 168, 76, 0.06);
-            border: 1px solid rgba(201, 168, 76, 0.15);
-            border-radius: 12px;
-            padding: 16px 20px;
-        }
-
-        .about-avatar {
-            flex-shrink: 0;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), rgba(201, 168, 76, 0.5));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--bg);
-        }
-
-        .about-text {
-            font-size: 13.5px;
-            line-height: 1.65;
-            color: var(--muted);
-        }
-
-        .about-text strong {
-            color: var(--text);
-            font-weight: 600;
-        }
-
-        /* ── FOOTER ── */
-        footer {
-            text-align: center;
-            padding: 40px 24px;
-            border-top: 1px solid var(--border);
-            font-size: 13px;
-            color: rgba(136, 136, 164, 0.5);
-        }
-
-        @media (max-width: 600px) {
-            .hero {
-                padding: 60px 20px 50px;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -370,7 +53,7 @@
                 <p>From Perry's Black Ships to MITI, Toyota's kaizen, the Lost Decades, and Abenomics — the original
                     Asian miracle and the most important economic warning story of the 21st century.</p>
                 <div class="card-footer">
-                    <span>~18,500 words · 12 chapters</span>
+                    <span>⏳ 60 min read · 18k words</span>
                     <span class="card-read">Read →</span>
                 </div>
             </a>
@@ -383,7 +66,7 @@
                     pragmatism, Zhu's SOE surgery, the World's Factory era, the tech leap, and the challenges ahead. The
                     most astonishing transformation in economic history.</p>
                 <div class="card-footer">
-                    <span>~18,000 words · 10 chapters</span>
+                    <span>⏳ 60 min read · 18k words</span>
                     <span class="card-read">Read →</span>
                 </div>
             </a>
@@ -395,7 +78,7 @@
                 <p>From rubble and rice farms in 1953 to Samsung, BTS, and Squid Game. The complete story of the most
                     dramatic national reinvention in history.</p>
                 <div class="card-footer">
-                    <span>Long-form · Multiple chapters</span>
+                    <span>⏳ 55 min read · Multiple chapters</span>
                     <span class="card-read">Read →</span>
                 </div>
             </a>
@@ -407,7 +90,7 @@
                 <p>Taiwan makes 90% of the world's most advanced chips. A 394km island with no resources, under threat
                     of invasion, became so technologically essential that the world cannot afford to let it fall.</p>
                 <div class="card-footer">
-                    <span>~16,700 words · 11 chapters</span>
+                    <span>⏳ 55 min read · 16k words</span>
                     <span class="card-read">Read →</span>
                 </div>
             </a>
@@ -419,7 +102,7 @@
                 <p>A swampy island with no resources, no hinterland, and no future — that became one of the world's
                     wealthiest, safest, and most efficiently run cities.</p>
                 <div class="card-footer">
-                    <span>Long-form · Multiple chapters</span>
+                    <span>⏳ 55 min read · Multiple chapters</span>
                     <span class="card-read">Read →</span>
                 </div>
             </a>
@@ -432,7 +115,7 @@
                     reserves — that has defaulted, hyperinflated, and watched country after country race past it. The
                     most instructive development failure in history.</p>
                 <div class="card-footer">
-                    <span>~16,200 words · 11 chapters</span>
+                    <span>⏳ 50 min read · 16k words</span>
                     <span class="card-read">Read →</span>
                 </div>
             </a>
@@ -444,7 +127,7 @@
                 <p>25% of global GDP in 1700. Colonial deindustrialisation. The 1991 gold airlift. The IT revolution.
                     Where India stands today and what it must do next.</p>
                 <div class="card-footer">
-                    <span>~12,600 words · 11 chapters</span>
+                    <span>⏳ 45 min read · 12k words</span>
                     <span class="card-read">Read →</span>
                 </div>
             </a>
@@ -456,7 +139,7 @@
                 <p>From the underground directors of the 1990s to Parasite's Oscar and Squid Game's global phenomenon —
                     the complete story of Korean cinema's world conquest.</p>
                 <div class="card-footer">
-                    <span>Long-form · Multiple chapters</span>
+                    <span>⏳ 55 min read · Multiple chapters</span>
                     <span class="card-read">Read →</span>
                 </div>
             </a>
@@ -468,7 +151,7 @@
                 <p>From Mesopotamia's first states to China's middle-income trap — the patterns, forces, and laws that
                     govern the fate of civilisations across time.</p>
                 <div class="card-footer">
-                    <span>~17,300 words · 12 chapters</span>
+                    <span>⏳ 55 min read · 17k words</span>
                     <span class="card-read">Read →</span>
                 </div>
             </a>
@@ -480,7 +163,7 @@
                 <p>From the airport currency counter to the $7.5 trillion market that has toppled governments, built
                     industrial empires, and created billion-dollar bets in a single day.</p>
                 <div class="card-footer">
-                    <span>~17,000 words · 12 chapters</span>
+                    <span>⏳ 55 min read · 17k words</span>
                     <span class="card-read">Read →</span>
                 </div>
             </a>
@@ -494,7 +177,7 @@
                     This is the complete story of that trust — how it was built, abused, broken, and rebuilt across
                     every civilization from Mesopotamia to the blockchain.</p>
                 <div class="card-footer">
-                    <span>~21,000 words · 12 chapters</span>
+                    <span>⏳ 70 min read · 21k words</span>
                     <span class="card-read">Read →</span>
                 </div>
             </a>
@@ -505,7 +188,7 @@
                 <h2>The Stock Market Story: 400 Years of Greed, Genius, and Compounding</h2>
                 <p>₹1 lakh invested in the Sensex in 1979 is worth ₹10 crore today. This is the complete story of how that miracle works — from the Amsterdam Beurs of 1602 to the algorithmic markets of today, through every bubble, crash, fraud, and fortune in between.</p>
                 <div class="card-footer">
-                    <span>~14,000 words · 13 chapters</span>
+                    <span>⏳ 45 min read · 14k words</span>
                     <span class="card-read">Read →</span>
                 </div>
             </a>
