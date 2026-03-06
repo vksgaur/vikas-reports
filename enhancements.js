@@ -236,11 +236,11 @@
     /* ── 3. STICKY TABLE OF CONTENTS ── */
     const tocStyle = document.createElement('style');
     tocStyle.textContent = `
-    @media (min-width: 1350px) {
+    @media (min-width: 1150px) {
       body {
         display: grid !important;
-        grid-template-columns: 280px minmax(0, 820px) !important;
-        gap: 60px !important;
+        grid-template-columns: 250px minmax(0, 820px) !important;
+        gap: 40px !important;
         justify-content: center !important;
         align-items: start !important;
         max-width: 100% !important;
