@@ -477,4 +477,118 @@
             }
         }, { passive: true });
     }
+
+    /* ── 5. ZEN MODE ── */
+    if (currentReport) {
+        // Create Zen Button
+        const zenBtn = document.createElement('button');
+        zenBtn.className = 'vr-share-btn zen-btn';
+        zenBtn.title = 'Toggle Zen Mode (Distraction Free Reading)';
+        zenBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 100-16 8 8 0 000 16zM11 7h2v5.586l3.95 3.95-1.414 1.414-4.536-4.536V7z"/></svg>`;
+        
+        // Find share container to add it there
+        const shareCont = document.querySelector('.vr-share-container');
+        if (shareCont) {
+            shareCont.prepend(zenBtn); // Add to top of share buttons
+        } else {
+            // Fallback if share container isn't ready
+            zenBtn.style.position = 'fixed';
+            zenBtn.style.top = '20px';
+            zenBtn.style.right = '80px';
+            zenBtn.style.zIndex = '1000';
+            document.body.appendChild(zenBtn);
+        }
+
+        zenBtn.addEventListener('click', () => {
+            // If we are showing ToC, collapse it first
+            if (document.body.classList.contains('has-toc') && !document.body.classList.contains('toc-collapsed')) {
+                document.body.classList.add('toc-collapsed');
+            }
+            
+            document.body.classList.toggle('zen-mode');
+            
+            // If turning Zen mode off, restore ToC based on localStorage
+            if (!document.body.classList.contains('zen-mode')) {
+                const savedTocState = localStorage.getItem('toc-collapsed');
+                if (savedTocState !== 'true') {
+                    document.body.classList.remove('toc-collapsed');
+                }
+            }
+        });
+    }
+
+    /* ── 6. CHAPTER PROGRESS DOTS ── */
+    if (currentReport) {
+        const chapters = document.querySelectorAll('h2');
+        if (chapters.length > 2) {
+            const dotsStyle = document.createElement('style');
+            dotsStyle.textContent = `
+            .vr-chapter-dots {
+                position: fixed;
+                right: 30px;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                z-index: 999;
+                pointer-events: none;
+                transition: opacity 0.5s ease;
+            }
+            .vr-dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: rgba(136,136,164,0.3);
+                transition: all 0.3s ease;
+            }
+            .vr-dot.active {
+                background: var(--vr-accent, #c9a84c);
+                box-shadow: 0 0 8px var(--vr-accent, #c9a84c);
+                transform: scale(1.5);
+            }
+            body.zen-mode .vr-chapter-dots {
+                opacity: 0;
+            }
+            @media (max-width: 1400px) {
+                .vr-chapter-dots { display: none; }
+            }
+            `;
+            document.head.appendChild(dotsStyle);
+
+            const dotsContainer = document.createElement('div');
+            dotsContainer.className = 'vr-chapter-dots';
+            
+            chapters.forEach((ch, idx) => {
+                const dot = document.createElement('div');
+                dot.className = 'vr-dot';
+                dot.dataset.idx = idx;
+                dotsContainer.appendChild(dot);
+            });
+            
+            document.body.appendChild(dotsContainer);
+
+            const dots = dotsContainer.querySelectorAll('.vr-dot');
+            
+            window.addEventListener('scroll', () => {
+                let currentIdx = -1;
+                
+                chapters.forEach((ch, idx) => {
+                    const rect = ch.getBoundingClientRect();
+                    // If the chapter heading is above the middle of the screen
+                    if (rect.top < window.innerHeight / 2) {
+                        currentIdx = idx;
+                    }
+                });
+
+                dots.forEach((dot, idx) => {
+                    if (idx === currentIdx || (currentIdx === -1 && idx === 0 && window.scrollY < 300)) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }, { passive: true });
+        }
+    }
 })();
