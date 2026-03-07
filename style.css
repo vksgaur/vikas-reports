@@ -480,3 +480,148 @@
             border-color: rgba(0,0,0,0.1);
             color: rgba(0,0,0,0.4);
         }
+
+        /* ── DYNAMIC PULL QUOTES ── */
+        .vr-pull-quote {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 24px;
+            font-style: italic;
+            font-weight: 700;
+            line-height: 1.4;
+            color: var(--gold);
+            text-align: center;
+            margin: 60px auto;
+            max-width: 90%;
+            position: relative;
+            padding: 30px 40px;
+            background: transparent;
+            border: none;
+            clear: both;
+        }
+        
+        @media (min-width: 1100px) {
+            .vr-pull-quote.float-right {
+                float: right;
+                width: 340px;
+                margin: 10px -80px 20px 40px;
+                text-align: right;
+                padding: 0;
+            }
+            .vr-pull-quote.float-left {
+                float: left;
+                width: 340px;
+                margin: 10px 40px 20px -80px;
+                text-align: left;
+                padding: 0;
+            }
+        }
+
+        .vr-pull-quote::before {
+            content: '“';
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            color: rgba(201, 168, 76, 0.2);
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            line-height: 1;
+        }
+        
+        .vr-pull-quote.float-right::before {
+            left: -30px;
+        }
+
+        :root.light .vr-pull-quote::before {
+            color: rgba(154, 111, 15, 0.2);
+        }
+
+        /* ── INTERACTIVE TIMELINE SCRUBBER ── */
+        .vr-timeline-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 600px;
+            height: 4px;
+            background: rgba(136,136,164,0.2);
+            border-radius: 4px;
+            z-index: 990;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            pointer-events: none;
+        }
+
+        /* Only show timeline when there are actual dates extracted */
+        .vr-timeline-container.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .vr-timeline-progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: var(--vr-accent, #c9a84c);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .vr-timeline-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--bg);
+            border: 2px solid var(--vr-accent, #c9a84c);
+            border-radius: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: left 0.1s linear;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .vr-timeline-label {
+            position: absolute;
+            top: -25px;
+            transform: translateX(-50%);
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--vr-accent, #c9a84c);
+            background: var(--surface);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(201,168,76,0.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .vr-timeline-tick {
+            position: absolute;
+            width: 2px;
+            height: 8px;
+            background: rgba(136,136,164,0.4);
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .vr-timeline-tick-label {
+            position: absolute;
+            top: 10px;
+            transform: translateX(-50%);
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            color: rgba(136,136,164,0.6);
+        }
+        
+        /* Hide timeline in Zen Mode or on small screens */
+        body.zen-mode .vr-timeline-container,
+        @media (max-width: 800px) {
+            .vr-timeline-container {
+                display: none !important;
+            }
+        }
