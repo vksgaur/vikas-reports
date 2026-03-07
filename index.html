@@ -23,6 +23,8 @@
     </button>
 
     <section class="hero">
+        <div class="hero-bg-map"></div>
+        <div class="hero-content">
         <div class="hero-label">Long-Form Research</div>
         <h1>Ideas Worth<br />Reading Slowly</h1>
         <p>A personal collection of deeply researched reports on economics, history, and culture — written for the
@@ -39,6 +41,7 @@
         </div>
 
         <div class="hero-meta">11 Reports · March 2026</div>
+    </div>
     </section>
 
     <div class="divider"></div>
@@ -53,7 +56,7 @@
         <button class="filter-btn" data-filter="geopolitics">Geopolitics</button>
     </div>
 
-        <div class="cards">
+        <div class="cards" id="cards-grid">
 
             <a class="card" href="The_Original_Blueprint_Japan.html" style="--accent:#c0392b">
                 <div class="card-icon">🇯🇵</div>
@@ -203,6 +206,7 @@
             </a>
 
         </div>
+    </div>
     </section>
 
     <footer>
@@ -265,6 +269,19 @@
                     }
                 });
             });
+        });
+
+        
+        // Magnetic Hover Effect for Cards
+        document.getElementById('cards-grid').addEventListener('mousemove', e => {
+            for(const card of document.querySelectorAll('.card')) {
+                const rect = card.getBoundingClientRect(),
+                      x = e.clientX - rect.left,
+                      y = e.clientY - rect.top;
+
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+            }
         });
 
         // Scroll Reveal Logic
