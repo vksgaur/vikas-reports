@@ -13,7 +13,8 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23c9a84c'/%3E%3Ctext x='50' y='66' font-family='Georgia, serif' font-size='52' font-weight='bold' fill='%2314141d' text-anchor='middle'%3EVG%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23c9a84c'/%3E%3Ctext x='50' y='66' font-family='Georgia, serif' font-size='52' font-weight='bold' fill='%2314141d' text-anchor='middle'%3EVG%3C/text%3E%3C/svg%3E">
 </head>
 
 <body>
@@ -25,40 +26,54 @@
     <section class="hero">
         <div class="hero-bg-map"></div>
         <div class="hero-content">
-        <div class="hero-label">Long-Form Research</div>
-        <h1>Ideas Worth<br />Reading Slowly</h1>
-        <p>A personal collection of deeply researched reports on economics, history, and culture — written for the
-            curious mind.</p>
+            <div class="hero-label">Long-Form Research</div>
+            <h1>Ideas Worth<br />Reading Slowly</h1>
+            <p>A personal collection of deeply researched reports on economics, history, and culture — written for the
+                curious mind.</p>
 
-        <div class="about-author">
-            <div class="about-avatar">VG</div>
-            <div class="about-text">
-                <strong>Vikas Gaur</strong> — I like to read deeply, think slowly, and understand the world properly
-                rather than quickly. In a world that rushes everything, I find joy in sitting with an idea long enough
-                for it to actually make sense. This website is an extension of that — a place built for slow reading,
-                for people who believe some things are worth more than five minutes of their attention.
+            <div class="about-author">
+                <div class="about-avatar">VG</div>
+                <div class="about-text">
+                    <strong>Vikas Gaur</strong> — I like to read deeply, think slowly, and understand the world properly
+                    rather than quickly. In a world that rushes everything, I find joy in sitting with an idea long
+                    enough
+                    for it to actually make sense. This website is an extension of that — a place built for slow
+                    reading,
+                    for people who believe some things are worth more than five minutes of their attention.
+                </div>
             </div>
-        </div>
 
-        <div class="hero-meta">11 Reports · March 2026</div>
-    </div>
+            <div class="hero-meta">11 Reports · March 2026</div>
+        </div>
     </section>
 
     <div class="divider"></div>
 
     <section class="grid-section">
-        
-    <div class="filter-container">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="economics">Economics & Finance</button>
-        <button class="filter-btn" data-filter="history">History</button>
-        <button class="filter-btn" data-filter="asia">Asia</button>
-        <button class="filter-btn" data-filter="geopolitics">Geopolitics</button>
-    </div>
+
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="economics">Economics & Finance</button>
+            <button class="filter-btn" data-filter="history">History</button>
+            <button class="filter-btn" data-filter="asia">Asia</button>
+            <button class="filter-btn" data-filter="geopolitics">Geopolitics</button>
+        </div>
 
         <div class="cards" id="cards-grid">
 
-            <a class="card" href="The_Original_Blueprint_Japan.html" style="--accent:#c0392b">
+            <a class="card" href="The_German_Engine.html" style="--accent:#c00000">
+                <div class="card-icon">🇩🇪</div>
+                <div class="card-tag">Germany · Economics · Engineering</div>
+                <h2>The German Engine: Resurrection, Miracle, and the Future of the Mittelstand</h2>
+                <p>From the rubble of 1945 to Europe's undisputed industrial anchor. The story of the Wirtschaftswunder,
+                    the Mittelstand, and the hardest reinvention yet to come.</p>
+                <div class="card-footer">
+                    <span>⏳ 52 min read · 10k words</span>
+                    <span class="card-read">Read →</span>
+                </div>
+            </a>
+
+            <a class="card" href="The_Original_Blueprint_Japan.html" style="--accent:#c9a84c">
                 <div class="card-icon">🇯🇵</div>
                 <div class="card-tag">Japan · Economics · History</div>
                 <h2>The Original Blueprint: Japan's Rise, Stagnation, and Reinvention</h2>
@@ -198,7 +213,9 @@
                 <div class="card-icon">📈</div>
                 <div class="card-tag">Finance · History · Investing</div>
                 <h2>The Stock Market Story: 400 Years of Greed, Genius, and Compounding</h2>
-                <p>₹1 lakh invested in the Sensex in 1979 is worth ₹10 crore today. This is the complete story of how that miracle works — from the Amsterdam Beurs of 1602 to the algorithmic markets of today, through every bubble, crash, fraud, and fortune in between.</p>
+                <p>₹1 lakh invested in the Sensex in 1979 is worth ₹10 crore today. This is the complete story of how
+                    that miracle works — from the Amsterdam Beurs of 1602 to the algorithmic markets of today, through
+                    every bubble, crash, fraud, and fortune in between.</p>
                 <div class="card-footer">
                     <span>⏳ 45 min read · 14k words</span>
                     <span class="card-read">Read →</span>
@@ -206,7 +223,7 @@
             </a>
 
         </div>
-    </div>
+        </div>
     </section>
 
     <footer>
@@ -232,76 +249,76 @@
                 icon.textContent = isLight ? '☀️' : '🌙';
                 localStorage.setItem('theme', isLight ? 'light' : 'dark');
             });
-        
-        // Filter Logic
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const cards = document.querySelectorAll('.card');
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+            // Filter Logic
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.card');
 
-                const filter = btn.getAttribute('data-filter');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
 
-                cards.forEach(card => {
-                    const tagText = card.querySelector('.card-tag').textContent.toLowerCase();
-                    
-                    if (filter === 'all') {
-                        card.style.display = 'flex';
-                        setTimeout(() => card.style.opacity = '1', 10);
-                    } else if (filter === 'economics' && (tagText.includes('economic') || tagText.includes('finance'))) {
-                        card.style.display = 'flex';
-                        setTimeout(() => card.style.opacity = '1', 10);
-                    } else if (filter === 'history' && tagText.includes('history')) {
-                        card.style.display = 'flex';
-                        setTimeout(() => card.style.opacity = '1', 10);
-                    } else if (filter === 'asia' && (tagText.includes('japan') || tagText.includes('china') || tagText.includes('korea') || tagText.includes('taiwan') || tagText.includes('singapore') || tagText.includes('india'))) {
-                        card.style.display = 'flex';
-                        setTimeout(() => card.style.opacity = '1', 10);
-                    } else if (filter === 'geopolitics' && (tagText.includes('geopolitic') || tagText.includes('governance'))) {
-                        card.style.display = 'flex';
-                        setTimeout(() => card.style.opacity = '1', 10);
-                    } else {
-                        card.style.opacity = '0';
-                        setTimeout(() => card.style.display = 'none', 300);
-                    }
+                    const filter = btn.getAttribute('data-filter');
+
+                    cards.forEach(card => {
+                        const tagText = card.querySelector('.card-tag').textContent.toLowerCase();
+
+                        if (filter === 'all') {
+                            card.style.display = 'flex';
+                            setTimeout(() => card.style.opacity = '1', 10);
+                        } else if (filter === 'economics' && (tagText.includes('economic') || tagText.includes('finance'))) {
+                            card.style.display = 'flex';
+                            setTimeout(() => card.style.opacity = '1', 10);
+                        } else if (filter === 'history' && tagText.includes('history')) {
+                            card.style.display = 'flex';
+                            setTimeout(() => card.style.opacity = '1', 10);
+                        } else if (filter === 'asia' && (tagText.includes('japan') || tagText.includes('china') || tagText.includes('korea') || tagText.includes('taiwan') || tagText.includes('singapore') || tagText.includes('india'))) {
+                            card.style.display = 'flex';
+                            setTimeout(() => card.style.opacity = '1', 10);
+                        } else if (filter === 'geopolitics' && (tagText.includes('geopolitic') || tagText.includes('governance'))) {
+                            card.style.display = 'flex';
+                            setTimeout(() => card.style.opacity = '1', 10);
+                        } else {
+                            card.style.opacity = '0';
+                            setTimeout(() => card.style.display = 'none', 300);
+                        }
+                    });
                 });
             });
-        });
 
-        
-        // Magnetic Hover Effect for Cards
-        document.getElementById('cards-grid').addEventListener('mousemove', e => {
-            for(const card of document.querySelectorAll('.card')) {
-                const rect = card.getBoundingClientRect(),
-                      x = e.clientX - rect.left,
-                      y = e.clientY - rect.top;
 
-                card.style.setProperty("--mouse-x", `${x}px`);
-                card.style.setProperty("--mouse-y", `${y}px`);
-            }
-        });
+            // Magnetic Hover Effect for Cards
+            document.getElementById('cards-grid').addEventListener('mousemove', e => {
+                for (const card of document.querySelectorAll('.card')) {
+                    const rect = card.getBoundingClientRect(),
+                        x = e.clientX - rect.left,
+                        y = e.clientY - rect.top;
 
-        // Scroll Reveal Logic
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                    observer.unobserve(entry.target);
+                    card.style.setProperty("--mouse-x", `${x}px`);
+                    card.style.setProperty("--mouse-y", `${y}px`);
                 }
             });
-        }, observerOptions);
 
-        cards.forEach(card => {
-            card.classList.add('reveal-hidden');
-            observer.observe(card);
-        });
+            // Scroll Reveal Logic
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            cards.forEach(card => {
+                card.classList.add('reveal-hidden');
+                observer.observe(card);
+            });
 
         })();
     </script>
