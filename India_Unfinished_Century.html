@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="author" content="Vikas Gaur"/>
+<meta name="description" content="India's Unfinished Century: The Dream That Stalled — An exhaustive analysis of India's growth paradox, structural bottlenecks, capital flight, and the path ahead."/>
+<title>India's Unfinished Century: The Dream That Stalled — Vikas Gaur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23e8834a'/%3E%3Ctext x='50' y='66' font-family='Georgia,serif' font-size='52' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3EVG%3C/text%3E%3C/svg%3E"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d12;--surface:#14141d;--surface2:#1c1c28;
+  --border:rgba(255,255,255,0.08);--text:#e8e8f0;--muted:#8888a4;
+  --accent:#e8834a;--accent-dim:rgba(232,131,74,0.15);
+  --serif:'Crimson Pro',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
+}
+:root.light{
+  --bg:#fdfbf7;--surface:#ffffff;--surface2:#f5f0e8;
+  --border:rgba(0,0,0,0.08);--text:#1a1610;--muted:#6b6352;
+  --accent:#c25e1a;--accent-dim:rgba(194,94,26,0.12);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--serif);font-size:20px;line-height:1.85;transition:background .3s,color .3s}
+
+/* PROGRESS BAR */
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0%;z-index:1000;transition:width .1s}
+
+/* THEME TOGGLE */
+#theme-toggle{position:fixed;top:20px;right:20px;z-index:999;width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--accent);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+#theme-toggle:hover{transform:scale(1.1);border-color:var(--accent)}
+
+/* BACK BUTTON */
+.back-nav{position:fixed;top:20px;left:20px;z-index:999;font-family:var(--sans);font-size:13px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:6px;background:var(--surface);padding:8px 16px;border-radius:20px;border:1px solid var(--border);transition:all .2s}
+.back-nav:hover{color:var(--accent);border-color:var(--accent)}
+
+/* TOC SIDEBAR */
+#toc-sidebar{position:fixed;left:max(20px,calc(50% - 680px));top:50%;transform:translateY(-50%);width:220px;max-height:85vh;overflow-y:auto;z-index:100;opacity:0;transition:opacity .3s}
+#toc-sidebar.visible{opacity:1}
+#toc-sidebar ul{list-style:none;border-left:2px solid var(--border)}
+#toc-sidebar ul li a{display:block;padding:5px 12px;font-family:var(--sans);font-size:11px;color:var(--muted);text-decoration:none;line-height:1.35;transition:color .2s,border-color .2s}
+#toc-sidebar ul li a:hover,#toc-sidebar ul li a.active{color:var(--accent);border-left:2px solid var(--accent);margin-left:-2px}
+@media(max-width:1250px){#toc-sidebar{display:none}}
+
+/* MAIN LAYOUT */
+.container{max-width:740px;margin:0 auto;padding:80px 24px 120px}
+
+/* HEADER */
+.report-header{text-align:center;padding:60px 0 50px;border-bottom:1px solid var(--border);margin-bottom:60px}
+.report-eyebrow{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+.report-title{font-family:var(--serif);font-size:clamp(2.3rem,5vw,3.5rem);font-weight:700;line-height:1.15;margin-bottom:20px;letter-spacing:-.02em}
+.report-subtitle{font-family:var(--serif);font-size:1.25rem;font-style:italic;color:var(--muted);line-height:1.6;margin-bottom:36px;max-width:580px;margin-left:auto;margin-right:auto}
+.report-meta{font-family:var(--sans);font-size:13px;color:var(--muted);display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap}
+
+/* TYPOGRAPHY */
+.chapter-section{margin-bottom:80px;padding-top:40px;border-top:1px solid var(--border)}
+.chapter-number{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+h2{font-family:var(--serif);font-size:2rem;font-weight:700;margin:0 0 28px;letter-spacing:-.01em;line-height:1.25;color:var(--text)}
+h3{font-family:var(--serif);font-size:1.4rem;font-weight:600;margin:40px 0 16px;font-style:italic;color:var(--text)}
+h4{font-family:var(--sans);font-size:1.1rem;font-weight:600;margin:32px 0 12px;color:var(--text)}
+p{margin-bottom:1.5em;text-align:justify}
+p:first-of-type::first-line{font-variant-caps:small-caps;letter-spacing:.02em}
+
+/* CALLOUTS & QUOTES */
+blockquote{border-left:3px solid var(--accent);padding:20px 28px;margin:40px 0;background:var(--accent-dim);border-radius:0 6px 6px 0}
+blockquote p{font-size:1.2rem;font-style:italic;margin:0;line-height:1.8;color:var(--text)}
+
+/* TABLES */
+.table-wrapper{overflow-x:auto;margin:32px 0 40px}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:14px;background:var(--surface);border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border)}
+th{background:var(--surface2);font-weight:600;color:var(--text)}
+tr:last-child td{border-bottom:none}
+td{color:var(--text)}
+
+/* LISTS */
+ol,ul{margin:0 0 1.5em 1.5em}
+li{margin-bottom:.7em}
+
+/* DIVIDERS & FOOTER */
+.section-divider{text-align:center;color:var(--muted);margin:60px 0;letter-spacing:.5em;font-size:14px}
+footer{margin-top:100px;padding-top:40px;border-top:1px solid var(--border);font-family:var(--sans);font-size:13px;color:var(--muted);text-align:center;line-height:2}
+footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<a href="index.html" class="back-nav">← Reports Index</a>
+<button id="theme-toggle" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+
+<nav id="toc-sidebar">
+  <ul>
+    <li><a href="#prologue">Prologue: Paradox of 2026</a></li>
+    <li><a href="#chapter-1">Ch. 1: Night the Gold Left</a></li>
+    <li><a href="#chapter-2">Ch. 2: The Golden Run</a></li>
+    <li><a href="#chapter-3">Ch. 3: The Stall</a></li>
+    <li><a href="#chapter-4">Ch. 4: Factory Never Came</a></li>
+    <li><a href="#chapter-5">Ch. 5: Classroom & Kitchen</a></li>
+    <li><a href="#chapter-6">Ch. 6: State Cannot Finish</a></li>
+    <li><a href="#chapter-7">Ch. 7: The Great Exit</a></li>
+    <li><a href="#chapter-8">Ch. 8: Ledger of Mistakes</a></li>
+    <li><a href="#chapter-9">Ch. 9: The Other Ledger</a></li>
+    <li><a href="#chapter-10">Ch. 10: Is There Hope?</a></li>
+    <li><a href="#sources">Sources & Notes</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+<header class="report-header">
+  <div class="report-eyebrow">Vikas Gaur · Long-Form Research Report · October 2026</div>
+  <h1 class="report-title">India's Unfinished Century</h1>
+  <p class="report-subtitle">The Dream That Stalled</p>
+  <div class="report-meta">
+    <span>✍️ Written by <strong>Vikas Gaur</strong></span>
+    <span>•</span>
+    <span>📅 October 23, 2026</span>
+    <span>•</span>
+    <span>⏳ 55 min read · 11k words</span>
+  </div>
+</header>
+
+<!-- PROLOGUE -->
+<section id="prologue" class="chapter-section">
+  <div class="chapter-number">PROLOGUE</div>
+  <h2>The Paradox of 2026</h2>
+
+  <p>In 2026, India's economy kept growing at close to eight per cent, and foreign investors kept leaving. The economy grew 7.7 per cent in FY2025-26 and 7.8 per cent in the April to June 2026 quarter. Over the same months, foreign portfolio investors pulled ₹3.08 lakh crore (about $32.7 billion) out of Indian shares through 12 October, the largest outflow in any year on record and nearly double the ₹1.66 lakh crore that left in all of 2025. In 2024, they were net buyers by a rounding error: ₹427 crore.</p>
+
+  <p>Both things are true at once. The first says India is the fastest-growing large economy on Earth. The second says that the people who hold the world's mobile money, shown a menu of countries, are ordering something else. This report is about the gap between those two facts, and about the larger gap behind them: between the India that many believed in 2007 and the India that exists in 2026.</p>
+
+  <p>The gap can be measured in one number. Around 1990, India and China had roughly the same income per head, with India slightly ahead, at about $360. By 2025, India's was about $2,700 to $2,760. China's was about $13,000, almost five times higher. India has been classed as a lower-middle-income country by the World Bank since 2009. In July 2026, the Bank's latest reclassification lifted Vietnam, Sri Lanka and the Philippines into the upper-middle bracket. India stayed where it was. The Bank's 2024 development report put the arithmetic bluntly: at current trends, India would need about 75 years to reach a quarter of US income per head.</p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Measure</th>
+          <th>India</th>
+          <th>Comparison</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Income per head, about 1990</td>
+          <td>about $360</td>
+          <td>China slightly lower</td>
+        </tr>
+        <tr>
+          <td>Income per head, 2025</td>
+          <td>about $2,700 to $2,760</td>
+          <td>China about $13,000</td>
+        </tr>
+        <tr>
+          <td>World Bank income class</td>
+          <td>Lower-middle since 2009</td>
+          <td>Vietnam moved to upper-middle in July 2026</td>
+        </tr>
+        <tr>
+          <td>Years to reach 25% of US income per head at current trends</td>
+          <td>about 75</td>
+          <td>China: just over 10</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>One correction to the premise belongs at the start, because an honest account depends on it. Headline growth did not lose steam. India's GDP has grown at more than 6 per cent a year for most of the past quarter century and above 7 per cent in recent years. What lost steam was narrower and more important: private investment, the share of manufacturing in the economy, the creation of good jobs for a young population, and the confidence of foreign capital. India grew without transforming. The difference between those two things is the story told here.</p>
+
+  <p>The chapters follow the arc. Chapter 1 returns to the summer of 1991, when India shipped gold abroad to avoid default. Chapters 2 and 3 cover the golden run of 2003 to 2008 and the long stall that followed. Chapters 4 to 6 examine the structural reasons: the factories that did not come, the classrooms and kitchens that held the workforce back, and the state that struggled to finish what it started. Chapter 7 covers the money now leaving. Chapter 8 is the ledger of mistakes, political, social and economic. Chapter 9 is the other ledger, because India has also done things right, some of them world-leading. Chapter 10 asks whether there is hope, and on what conditions.</p>
+
+  <p>A note on method. Every figure here comes from a source listed at the end, and where sources disagree, the text says so. Where an argument is mine rather than established fact, I say that too.</p>
+</section>
+
+<div class="section-divider">— · —</div>
+
+<!-- CHAPTER 1 -->
+<section id="chapter-1" class="chapter-section">
+  <div class="chapter-number">CHAPTER 1</div>
+  <h2>The Night the Gold Left (1991)</h2>
+
+  <p>In the last days of May 1991, India shipped gold out of the country to stay solvent. The State Bank of India sent 20 tonnes of confiscated gold to the Union Bank of Switzerland in a deal that raised roughly $200 million. In July, the Reserve Bank of India pledged another 46.91 tonnes to the Bank of England and the Bank of Japan, which raised about $405 million. The total was roughly 67 tonnes. Parliament was told in July 1991 that the export of gold had been a painful decision.</p>
+
+  <p>The reason was simple and humiliating. India's foreign exchange reserves stood at about $1.2 billion in January 1991 and had roughly halved by June. That was enough to pay for about three weeks of essential imports. The country was weeks away from defaulting on its external obligations. The rupee was devalued by about 18 per cent in two steps, on 1 and 3 July.</p>
+
+  <p>It helps to picture what that means for a large, proud republic. India was not poor in assets. It was poor in dollars. An economy that had spent four decades trying to be self-sufficient found that it could not buy oil, fertiliser or medicine without borrowing against the family jewels. The Licence Raj, the system of industrial licences, import controls and tariffs that was supposed to protect national independence, had produced exactly the dependence it feared.</p>
+
+  <h3>What the crisis made possible</h3>
+  <p>Over the second half of 1991, the government of P.V. Narasimha Rao, with Manmohan Singh as finance minister, dismantled much of the industrial licensing system, cut import tariffs, devalued the rupee and opened sectors to foreign investment. The industrial policy statement of July 1991 ended licensing for most industries and offered automatic approval for foreign equity in a list of priority sectors. The software industry had a head start from a 1984 computer policy that eased hardware imports, but 1991 widened the road.</p>
+
+  <p>It is worth pausing on the political shape of this moment, because it recurs. India's most consequential economic reform was not chosen in a time of confidence. It was forced by a balance of payments crisis, enacted by a minority government, and carried out with an urgency that disappeared the moment the crisis passed. This is the first thread of the report: India reforms when it is frightened, and drifts when it is comfortable.</p>
+
+  <h3>The promise</h3>
+  <p>The promise of 1991 was never written down in a single sentence, but it was understood. India would follow the East Asian path. It would open up, attract capital, build factories, export manufactured goods to the world, and move hundreds of millions of workers off the land and into better jobs, as Korea had done from 1962, as Taiwan had, and as China had begun to do after its Third Plenum of December 1978. China was thirteen years ahead. India, with a similar population base and a similar income per head, was expected to run the same race with the same logic.</p>
+
+  <p>It did not run the same race. Income per head in 1990 was close to equal. Thirty-five years later, China's was almost five times India's. The reasons are the subject of the rest of this report, but one structural observation belongs here. The 1991 reforms freed what the central government controlled: industrial licences, import licences, the exchange rate, some foreign investment rules. They left largely untouched the things that central reformers could not easily reach: land, labour law (a shared subject with the states), the courts, the power sector, the quality of schools, and the cost of moving goods across the country. My argument, developed in later chapters, is that these are the things that determine whether a poor country becomes a factory country. India liberalised the parts it could reach in 1991 and spent the next thirty years circling the parts it could not.</p>
+
+  <h3>The gold comes home</h3>
+  <p>There is a satisfying coda. India repaid the loans and recovered the gold. In 2009, the RBI bought 200 tonnes from the IMF. In 2024, it began moving roughly 100 tonnes back from the Bank of England's vaults to India, and then about another 100 tonnes later that year.</p>
+
+  <p>By March 2026, around 680 tonnes of India's gold, more than 77 per cent of its holdings, sat in Indian vaults. As of 7 August 2026, India's foreign exchange reserves stood at about $707 billion. In the summer of 1991, they could not cover a month.</p>
+
+  <p>That contrast is real, and it matters for the argument of this report in an important way. Whatever India's problems are in 2026, a 1991-style collapse is not among them. India today does not have a balance of payments problem in the old sense. It has a different, quieter problem: a country with enormous reserves and a fast-growing economy that has still not done what Korea, China and now Vietnam did, which is to turn its people into an industrial workforce and its income into rich-country income. The remaining chapters explain why.</p>
+</section>
+
+<div class="section-divider">— · —</div>
+
+<!-- CHAPTER 2 -->
+<section id="chapter-2" class="chapter-section">
+  <div class="chapter-number">CHAPTER 2</div>
+  <h2>The Golden Run (2003 to 2008)</h2>
+
+  <p>For five years, India did what its optimists had always said it could do. GDP grew 9.5 per cent in 2005-06, 9.6 per cent in 2006-07 and 9.3 per cent in 2007-08, according to the figures reported at the time. Growth in 2003-04 was about 8 per cent. In 2002-03, a drought year, it had been under 4 per cent. The Tenth Plan period (2002 to 2007) averaged roughly 7.6 to 7.8 per cent, and the final three years ran well above that.</p>
+
+  <p>What made the run remarkable was not only its speed but its composition. It was driven by investment. The investment rate, gross capital formation as a share of GDP, rose from about 25 per cent in 2002-03 to about 38 per cent in 2007-08. Domestic savings averaged almost 35 per cent of GDP over 2005-06 to 2007-08, so the country was paying for its own boom. The current account deficit averaged only 0.4 per cent of GDP over 2003-04 to 2007-08. Foreign exchange reserves climbed past $300 billion. Reserves were roughly 250 times their level of early 1991, when they had stood near $1.2 billion.</p>
+
+  <p>Manufacturing, the sector that matters most for a poor country with a large young population, finally woke up. The Economic Survey of 2007-08 reported that manufacturing growth had accelerated from an average of 3.3 per cent in 1997-2002 to 8.6 per cent in 2002-07, and to about 9.9 per cent in the last three of those years. For the first time since 1991, the idea that India might become a factory economy seemed to have evidence behind it.</p>
+
+  <h3>The arithmetic of the dream</h3>
+  <p>There is a simple formula that development economists use. Growth is roughly the investment rate divided by the incremental capital-output ratio (ICOR), the amount of capital needed to produce one extra unit of output. With an ICOR of about 4, which is what India's high-growth phase delivered according to economists writing in The Hindu, an investment rate of 38 per cent supports growth of about 9.5 per cent. The boom was internally consistent. It was not a statistical illusion.</p>
+
+  <p>The government's own ambition rose to match. The Economic Survey and the planning exercise set a target of 9 per cent average growth for the Eleventh Plan (2007 to 2012). The realised average for that period was about 8.0 per cent, which was still excellent by any historical standard, and which hid a deterioration underneath, as the next chapter shows.</p>
+
+  <h3>Why it worked, and why it did not last</h3>
+  <p>Economists weight the causes differently. The commonly cited ones are a benign world economy that supplied cheap capital and rising demand, the maturing of the post-1991 reforms, aggressive bank lending to corporate India and to infrastructure, and a central government deficit that touched a record low in 2007.</p>
+
+  <p>But the same boom contained the seeds of the stall. The economists Arvind Subramanian and Josh Felman, in their 2019 analysis of the slowdown, locate the origin of the later crisis in the infrastructure projects launched during this investment boom, which began to go sour once growth slowed and costs rose. In other words, the golden run built the balance sheets that later poisoned the economy. A boom financed by rapid bank lending to long-gestation projects can look identical to a healthy boom until the moment the projects start to miss their revenues.</p>
+
+  <p>There was another quiet limitation. Even in the best years, the boom changed the composition of India's economy less than its size. The share of manufacturing in GDP stayed at about 16 per cent through the 2000s. Agriculture still employed a very large share of the workforce: 66 per cent as recently as 1987-88, and still 43 per cent in 2025. As I read the evidence, the boom was large but narrow: it lifted the organised, capital-intensive parts of the economy, the corporate sector, the services exporters and the infrastructure builders, more than the small firms and informal workers who make up most of employment.</p>
+
+  <h3>What a sustained run would have meant</h3>
+  <p>Here is an illustration, and it is my arithmetic rather than a forecast. Suppose that from 2008 an economy grows at 9 per cent a year rather than at 6.3 per cent, the average the World Bank reports for India from 2000 to 2024. Over 18 years, the first economy would be about 4.7 times larger and the second about 3.0 times larger. The difference is an economy more than 50 per cent bigger. With the same population, income per head would be correspondingly higher: roughly $4,300 instead of $2,760. That would still sit just below the $4,636 threshold of the World Bank's upper-middle bracket, so it would not have been a complete escape, but it would have put India next to the line rather than a long way from it.</p>
+
+  <p>Nobody can prove that India could have sustained 9 per cent growth. Very few countries have, and the ones that did, Japan, Korea, Taiwan and China, did it through manufacturing for export, not through services and capital-intensive industry alone. But the point of the illustration is to show what was at stake. A mid-2000s India growing at 9 per cent was not an ordinary strong economy. It was a country at the doorway of a different life. What happened next determined whether it walked through.</p>
+</section>
+
+<div class="section-divider">— · —</div>
+
+<!-- CHAPTER 3 -->
+<section id="chapter-3" class="chapter-section">
+  <div class="chapter-number">CHAPTER 3</div>
+  <h2>The Stall (2011 to 2020)</h2>
+
+  <p>The reversal was not a single event. It was a sequence, and each stage made the next one worse.</p>
+
+  <p>India came out of the global financial crisis quickly. Growth fell to 6.7 per cent in 2008-09, then recovered to 8.6 per cent in 2009-10 and 8.9 per cent in 2010-11, as reported at the time under the old GDP series. Then it fell back to 6.7 per cent in 2011-12 and kept sliding. The investment rate, which had reached about 38 per cent in 2007-08, peaked in 2011-12 and then began a long decline. By March 2018, CEIC data cited by the economist Arun Kumar put it at about 31 per cent. The World Bank's later assessment is blunt: investment growth in India fell from an average of 10.5 per cent a year in 2000 to 2010 to 5.7 per cent a year in 2011 to 2021.</p>
+
+  <h3>Stage one: paralysis and the stalled project</h3>
+  <p>The first stage was political and administrative. The Economic Survey of 2014-15 documented a rising stock of stalled projects, with the worst hit being those held up by what it called the policy paralysis of regulatory clearances. Projects that had been launched at the top of the boom, power plants, roads, mines, steel plants, were stuck waiting for environmental clearances, coal linkages, land and approvals. Delay raised costs, and rising costs pushed projects toward default. A decade later, it is still hard to say how much of the paralysis was caused by genuine caution after public controversies over how licences and resources had been allocated, and how much by ordinary weakness of coordination. What is not disputed is the outcome: investors stopped building.</p>
+
+  <p>In 2012, the government also did something that hurt its credibility with foreign investors for years. After the Supreme Court ruled in favour of Vodafone in a capital gains tax dispute, Parliament passed a retrospective amendment to the Income Tax Act, extending the law back to 1962. Chapter 6 returns to this episode, because its effects outlasted the dispute.</p>
+
+  <h3>Stage two: the external scare</h3>
+  <p>The second stage was external. In 2013, India's current account deficit reached a record of about 4.8 per cent of GDP in FY2012-13, funded largely by volatile foreign capital, while inflation ran close to 10 per cent. When the US Federal Reserve signalled on 22 May 2013 that it would slow its bond purchases, money fled emerging markets. The rupee fell from about 55 to a then-record 68.85 per dollar by 28 August. Morgan Stanley's analysts grouped India with Brazil, Indonesia, South Africa and Turkey as the Fragile Five. The RBI raised short-term rates by 200 basis points in July 2013 and curbed gold imports, and the crisis passed. But it left behind a lesson that is easy to forget: a large current account deficit financed by portfolio flows makes a country dependent on the mood of strangers.</p>
+
+  <h3>Stage three: the balance sheet disease</h3>
+  <p>The third stage was the deepest. The loans that banks had made to infrastructure and corporate borrowers during the boom were going bad. The gross non-performing asset ratio of commercial banks rose from 4.1 per cent in March 2014, or ₹2.51 lakh crore, to 11.46 per cent in March 2018, or ₹9.63 lakh crore. Roughly one rupee in nine of bank lending was in default.</p>
+
+  <p>The economists Arvind Subramanian and Josh Felman called this the Twin Balance Sheet problem, referring to banks and infrastructure firms. Their 2019 paper argued that by then it had become a Four Balance Sheet problem, adding non-bank finance companies and real estate firms. Their key insight was the vicious circle: risk-averse banks demanded high interest rates, which depressed growth, which generated more bad loans. In such a world, the usual remedies fail. Cutting interest rates does not help if banks will not lend; fiscal stimulus pushes up already high rates.</p>
+
+  <p>The repair took years and several instruments: the RBI forced banks to recognise bad loans, the Insolvency and Bankruptcy Code of 2016 created a resolution process, and state banks were recapitalised. It worked. By September 2025, the gross NPA ratio was about 2.1 per cent, the lowest in several decades. But the repair absorbed most of a decade, during which the private sector was in no position to invest.</p>
+
+  <h3>Stage four: the self-inflicted shocks</h3>
+  <p>Then came a series of policy shocks. On 8 November 2016, the government demonetised ₹500 and ₹1,000 notes, which accounted for 86.9 per cent of the value of currency in circulation, or ₹15.4 trillion. The RBI's own preliminary assessment estimated the effect on growth in 2016-17 at about 33 basis points, and described the damage as transient. Other economists estimated far larger losses, with the former prime minister Manmohan Singh predicting a fall of two percentage points in GDP growth. Honest accounting says the disagreement remains unresolved, in large part because the hardest-hit segment, the informal economy of small traders and cash-based workers, is the one that official data capture worst.</p>
+
+  <p>The Goods and Services Tax came into force in July 2017, a structural reform that replaced a maze of state and central levies with a single national indirect tax, and whose rollout was complicated. In 2018, the collapse of the infrastructure lender IL&FS shocked the non-bank finance sector. In 2020, Covid-19 and the national lockdown caused a contraction. In six years from 2013 to 2018, India endured five shocks: the rupee scare, the NPA crisis, demonetisation, the GST transition and the non-bank credit freeze. Then came a pandemic.</p>
+
+  <h3>Competing diagnoses</h3>
+  <p>Economists disagree about which stage mattered most. Subramanian and Felman emphasise finance. Ajay Chhibber argued in 2017 that an overvalued rupee, tight monetary policy and the unresolved bank problem were choking investment and exports. Others point to the failure to unwind the fiscal expansion after 2008 as the root of the later inflation, current account deficit and NPAs. These are not mutually exclusive. A sensible reading is that India's stall was overdetermined: a fiscal and monetary mix that overheated the economy, a balance sheet problem seeded in the boom, a political system that froze when it was most needed, and then a run of shocks, some external and some chosen.</p>
+
+  <p>The damage persists in the data. Private corporate investment in FY2025-26 was ₹11.9 lakh crore, down 2.8 per cent from the record ₹12.3 lakh crore in FY2024-25, and the private capex to GDP ratio slipped to 3.4 per cent. Investment has not yet regained the momentum it had before 2011.</p>
+</section>
+
+<div class="section-divider">— · —</div>
+
+<!-- CHAPTER 4 -->
+<section id="chapter-4" class="chapter-section">
+  <div class="chapter-number">CHAPTER 4</div>
+  <h2>The Factory That Never Came</h2>
+
+  <p>Every country that has gone from poor to rich in a generation has done it the same way: it gave large numbers of workers with little schooling a job in a factory, and then moved them up. Korea did it with textiles, then steel, then ships, then chips. China did it on a scale the world had never seen. Bangladesh did it with garments. Vietnam is doing it now with electronics. The factory is the ladder on which a farm family climbs into the middle class, and the economies that skipped it are mostly still waiting.</p>
+
+  <p>India's problem is that its ladder has never been tall enough. Manufacturing accounted for 16.7 per cent of GDP at constant prices in 2013-14, the year before the Make in India programme was launched. In 2023-24, the secretary of the government's industrial policy department acknowledged in July 2026, it was 15.9 per cent. A ten-year campaign to lift the share to 25 per cent had left it a little lower than where it started. The World Bank's database, on a different basis, shows manufacturing falling from about 15 per cent of GDP in 2018 to about 13 per cent in 2024, while a revised national accounts series with a 2022-23 base shows the share of manufacturing in value added rising from 14.5 per cent to 16.3 per cent over its three available years. The series do not agree on the level, and statisticians will argue for years about base years and deflators. They agree on the story: no structural breakthrough. Only about 12.1 per cent of workers were in manufacturing in 2025, according to the annual Periodic Labour Force Survey, while 43.0 per cent were still in agriculture.</p>
+
+  <h3>The world's apparel table</h3>
+  <p>The clearest test of whether a poor country is becoming a factory is labour-intensive exports, because they are the first rung. India's record there is disappointing. According to the World Bank, India's share of global exports of textiles, leather and footwear rose from 0.9 per cent in 2002 to a peak of 4.5 per cent in 2013, and then fell back to 3.5 per cent in 2022. By then Vietnam had 5.9 per cent and Bangladesh 5.1 per cent.</p>
+
+  <p>On apparel alone, a report launched by the research institute ICRIER put India's 2025 exports at about $15.7 billion, a global share of about 3 per cent, essentially unchanged since 2020. Bangladesh exported about $51 billion (a share of about 9.9 per cent), Vietnam about $39.4 billion (about 6.8 per cent) and China about $151 billion (about 28.7 per cent, down from its peak). As the world moved production away from China, India's share stood still while two smaller countries captured the shift. The World Bank also estimated that jobs directly tied to exports fell from 9.5 per cent of Indian employment in 2012 to 6.5 per cent in 2020.</p>
+
+  <h3>Why the ladder is short</h3>
+  <p>India's own officials offer a revealing diagnosis. Asked in 2026 why Indian manufacturing was losing to Mexico, Vietnam and Bangladesh, the secretary of the Department for Promotion of Industry and Internal Trade said that industry's calculations showed the cost at the factory gate to be about the same, and that India loses out through higher logistics costs. That is a candid statement, and it points to the real problem. It is not the cost of making the product. It is the cost of everything around it: moving goods from factory to port, dealing with inspections, clearing customs, waiting for power, settling disputes. This is the official diagnosis, and it is contested. Chapter 6 shows that the government's own 2025 study put national logistics costs at a figure close to advanced-economy levels.</p>
+
+  <p>A second diagnosis is the structure of firms. Data from the 2025 labour force survey, analysed by SBI Research, show that non-agricultural enterprises with fewer than 10 workers employ 38.4 per cent of all workers, those with 10 to 19 employ 4.1 per cent, and those with 20 or more employ only 13.7 per cent. India has a vast number of tiny firms, a thin layer of large ones, and a missing middle. Tiny firms cannot reach export scale, adopt modern technology or train workers. Rivals like Vietnam attracted foreign investors who built what one analyst called plug-and-play ecosystems of industrial parks and supplier clusters. India, by contrast, has capacity that is described as fragmented.</p>
+
+  <p>A third is the wrong kind of growth. India's export sectors have become more capital-intensive, which means they cannot absorb the millions of workers who arrive in the labour market every year. A country can have rising output without rising factory employment, and capital-intensive export growth is how that happens.</p>
+
+  <h3>The exception that proves the rule</h3>
+  <p>There is one remarkable success. In 2014, India had two mobile phone factories. By 2025 it had about 300. In FY2013-14, only 26 per cent of phones sold domestically were made in India. Today the figure is 99.2 per cent. Smartphone exports rose from $3.1 billion in FY2020-21 to $24.1 billion in FY2024-25 and to about ₹2.6 trillion (roughly $29.4 billion) in FY2025-26, with Apple's iPhones accounting for more than three-quarters of the total and over ₹2 trillion in value, making them India's largest branded export. India's share of US smartphone imports reached 44 per cent in 2025, against China's 25 per cent, which had been 61 per cent in mid-2024. The Apple ecosystem in India supports an estimated 250,000 jobs, most held by women.</p>
+
+  <p>This was the result of a deliberate policy, the production-linked incentive scheme, under which the government paid manufacturers a share of incremental sales. The government says the PLI schemes together have drawn ₹1.4 lakh crore of investment, ₹12 lakh crore of output and 8.5 lakh jobs. It is proof that India can do the thing it has struggled to do. It is also a lesson in how narrow the success is. Smartphone assembly relies heavily on imported components. One company dominates the output. And the incentive scheme's final year was FY2025-26, so the test of whether the industry sustains itself comes now.</p>
+
+  <p>Gujarat is the one major state whose manufacturing share keeps rising, and now stands at about 35 per cent of its GDP. In the other four of the five large industrial states analysed, manufacturing's share fell from the 18 to 24 per cent range in the early 2010s to between 13 and 18 per cent in 2024. A country can have a success in one state and one product. To become a factory economy, it needs thousands.</p>
+</section>
+
+<div class="section-divider">— · —</div>
+
+<!-- CHAPTER 5 -->
+<section id="chapter-5" class="chapter-section">
+  <div class="chapter-number">CHAPTER 5</div>
+  <h2>The Classroom and the Kitchen</h2>
+
+  <p>A factory economy needs workers who can read a manual, count a batch and follow a process, and it needs a great many of them. It also needs, in practice, women. In Bangladesh's garment industry and in Apple's Indian supply chain alike, the factory floor has been filled mainly by young women. India has struggled on both counts, and the two problems are connected: one is about what happens in the classroom, the other about what happens in the kitchen.</p>
+
+  <h3>The classroom: enrolled, but not learning</h3>
+  <p>India has largely solved the problem of getting children into school. The 2024 Annual Status of Education Report (ASER), a household survey of rural India, found that 98.1 per cent of children aged 6 to 14 were enrolled. What it has not solved is learning. Among Class 3 children in government schools, only 23.4 per cent could read a Class 2 level text. That was the highest figure in ASER's history, up from 16.3 per cent in 2022 and 20.9 per cent in 2018, so it is progress, but it means that three in four eight-year-olds in government schools cannot yet read a simple paragraph. By Class 5, the figure for reading a Class 2 text had recovered to 48.8 per cent, almost matching 2018. Roughly half of Class 5 pupils in government schools, in other words, could not yet read a text meant for seven-year-olds.</p>
+
+  <p>The survey also finds that 8.1 per cent of girls aged 15 to 16 are not enrolled in school, and that the best results come from Kerala, Himachal Pradesh and Punjab while Bihar, Jharkhand and Uttar Pradesh trail. These are the states that will supply a large share of India's future workforce.</p>
+
+  <p>This matters for the argument of the whole report. A child who reaches Class 8 unable to read fluently does not become an apprentice machinist at 18 or a call-centre agent at 20. She becomes, at best, an informal worker with no path to productivity growth. The learning gap is invisible in GDP today and decisive for growth tomorrow, and the debate about the demographic dividend should be as much about it as about jobs.</p>
+
+  <h3>The labour market: low unemployment, poor jobs</h3>
+  <p>India's official unemployment figure looks low. The 2025 annual labour force survey put the overall rate at 3.1 per cent on the 365-day usual status measure, and the monthly bulletins using the seven-day current weekly status measure show about 5.5 per cent in mid-2026. The reason the headline looks benign is that most Indians cannot afford to be unemployed. They work, in whatever way they can. The better question is what kind of work they do.</p>
+
+  <p>In 2025, 56.2 per cent of workers were self-employed, 23.6 per cent were in regular wage or salaried jobs (up from 22.4 per cent a year earlier), and 43.0 per cent still worked in agriculture. Only about 14 per cent of workers were in firms with 20 or more employees (14.5 per cent in one tabulation, 13.7 per cent in another). For young people, the picture is harsher. Youth unemployment (ages 15 to 29) was 9.9 per cent, with urban youth unemployment reported at roughly 13.6 per cent in mid-2026 and urban female youth unemployment at 18.9 per cent in the 2025 survey. A recent analysis in Business Standard put the angst of India's young people down to the shrinking supply of salaried jobs rather than to any single scandal.</p>
+
+  <p>There is a statistical subtlety here. India's education system produces young people with credentials who expect a salaried job, and an economy that offers them mainly self-employment, farm work or small-firm work. The mismatch is one of expectations, skills and employer demand, and it shows up as frustration more than as official unemployment.</p>
+
+  <h3>The kitchen: half the workforce missing</h3>
+  <p>The most striking number in India's labour market is the gap between women and men. The 2025 survey recorded a labour force participation rate of 79.1 per cent for men aged 15 and above and 40.0 per cent for women. Using the weekly measure, monthly bulletins in 2026 show rural female participation at 36 to 38 per cent and urban female participation at roughly 24 to 25 per cent. The gender gap in labour force participation in India is among the widest in the world. Analysts point to the same cluster of constraints: safety concerns, social norms, and a disproportionate burden of unpaid domestic work and care.</p>
+
+  <p>An economist's way to put this is that India has left a large share of its potential workforce out of the game. Another way is to ask what the factories of Gujarat, Tamil Nadu or Uttar Pradesh would look like if a majority of working-age women were in the labour force. The Apple supply chain suggests an answer: it employs an estimated 250,000 people, mostly women, and has become the country's largest branded export.</p>
+
+  <p>There is good news, and Chapter 9 gives it its due: female participation has risen, and regular wages are growing. But the starting point was so low that progress still leaves India far behind its comparators.</p>
+
+  <h3>The income consequence</h3>
+  <p>Put these threads together and the income numbers in the prologue follow naturally. A country with a poorly educated young workforce, a small manufacturing base and a female participation rate of 40 per cent is a country in which the average worker is not very productive. The Bank's 2024 report on the middle-income trap suggests that countries hit the trap at about 10 per cent of US income per head, or roughly $8,000 at today's prices. India, at $2,760, has a long way to go before it even reaches the trap. The question is whether it can get there fast enough to matter.</p>
+</section>
+
+<div class="section-divider">— · —</div>
+
+<!-- CHAPTER 6 -->
+<section id="chapter-6" class="chapter-section">
+  <div class="chapter-number">CHAPTER 6</div>
+  <h2>The State That Cannot Finish</h2>
+
+  <p>India is very good at beginning things. It passes laws, signs memoranda, launches missions and announces targets. Its recurring weakness is finishing: bringing a reform, a case or a project all the way to the end, on schedule, in a form that investors and citizens can rely on. This chapter looks at four places where the pattern shows up, and the cost it imposes on the whole economy.</p>
+
+  <h3>Justice delayed</h3>
+  <p>As of July 2026, the Law Minister told the Rajya Sabha, 5.64 crore cases were pending in Indian courts. The Supreme Court had more than 96,000, of which over 10,000 were more than ten years old, 558 were more than twenty years old and 26 were more than thirty years old. High courts had 80,660 cases pending for more than three decades. District and subordinate courts, which carry most of the load, held 4.99 crore pending cases on 28 July 2026, up from 4.77 crore on 31 December 2025. Uttar Pradesh alone accounted for 1.13 crore pending cases in its district courts at the end of 2025.</p>
+
+  <p>The minister attributed delays to a familiar list: vacancies, inadequate infrastructure, complex cases, frequent adjournments and slow processes, and noted that disposal falls within the judiciary's domain. I will not pretend to adjudicate that debate. The economic point is simpler. A contract is only as valuable as the speed and certainty with which it can be enforced. When a commercial dispute can take a decade, the sensible response is to avoid contracting with strangers, to stay small, to deal in cash and to rely on relationships. That is a drag on exactly the kind of firm India needs: mid-sized, arm's-length, willing to supply a customer it has never met. This is my inference rather than a measured estimate, but it is the standard reasoning in the literature on why institutions matter.</p>
+
+  <h3>Tax certainty and the Vodafone lesson</h3>
+  <p>The clearest case of what uncertainty costs is a tax dispute. In January 2012, the Supreme Court ruled that Vodafone was not liable to Indian capital gains tax on its acquisition of the Hutchison Essar mobile business, which had been done through an overseas transaction. Parliament responded in the Finance Act 2012 by amending the Income Tax Act retrospectively, back to 1962, to bring such indirect transfers within the tax net. In September 2020, a tribunal under the Permanent Court of Arbitration held unanimously that India's demand, with interest and penalties, breached the fair and equitable treatment guarantee in India's investment treaty with the Netherlands. The demand had been around ₹20,000 crore. India was entangled in more than a dozen such disputes over retrospective tax claims and cancelled contracts, including claims by Cairn Energy and Vedanta under the same retrospective provision. As I recall, Parliament later amended the law to end such retrospective demands, in 2021, though I have not re-verified that here.</p>
+
+  <p>Tax administrators will rightly say that governments have a duty to tax what the law taxes, and that the amendment was defended as a clarification. The point here is not who was right. It is that a foreign investor reading the headlines learned that a Supreme Court judgment in the company's favour could be reversed by legislation, decades back. The Indian Express carried an editorial in May 2026 whose title says it all: To win back foreign investors, India needs tax reform. Predictability is a form of capital. India spent a decade making it scarce.</p>
+
+  <h3>Labour: twenty-three years from idea to law</h3>
+  <p>In 2002, the Second National Commission on Labour recommended consolidating India's maze of labour laws into a small number of codes. Four codes, on wages, industrial relations, social security and occupational safety, were enacted in 2019 and 2020. They came into force on 21 November 2025, repealing 29 central laws, the largest single repeal of central labour statutes in India's history. Central rules and model standing orders followed on 8 May 2026. But labour is a shared subject, and companies must follow state rules as well. Gujarat, Puducherry and most north-eastern states had notified rules under at least one code by mid-2026, while many states had not. One provision raised the threshold for contract labour regulation from 20 to 50 workers. A reform recommended in 2002 is only now becoming operational, and in much of the country it is not yet operational at all.</p>
+
+  <p>Supporters see an overdue simplification that will reduce what one analysis called the regulatory cholesterol in the protected formal segment while extending security to the under-protected majority. Trade unions and several opposition-ruled states are wary. Both views are legitimate. What is not legitimate, from the point of view of growth, is the time it took.</p>
+
+  <h3>Land: the reform that lapsed</h3>
+  <p>Land is the input that every factory, road and warehouse needs, and India's land acquisition law is among the most contested in the world. In December 2014, the government issued an ordinance to make acquisition for infrastructure and industry easier, and renewed it more than once after the bill failed to pass the Rajya Sabha. On 30 August 2015, Prime Minister Narendra Modi announced that the ordinance would be allowed to lapse the next day, following large farmer protests, and that the 2013 law passed by the previous government would stand. The government used an executive order to extend that law's compensation benefits to 13 other central laws instead.</p>
+
+  <p>The farm laws followed the same arc. Parliament passed three agricultural reform laws in September 2020, and after a year of protests by farmers camped at Delhi's borders, Modi announced their repeal on 19 November 2021 and Parliament passed the repeal bill on 29 November. The prime minister said the government had failed to convince a section of farmers of their benefits.</p>
+
+  <p>I do not argue that either reform was right. Reasonable people differ on the compensation due to farmers, and on the risks in the farm laws. The structural point is that two of the most ambitious land-related reforms of the past decade were withdrawn under street pressure. A government that cannot hold a reform makes every future reform look reversible, and investors discount reversible policy.</p>
+
+  <h3>Trade: the quiet retreat</h3>
+  <p>From 1991 until about 2012, India steadily lowered tariffs. The economist Rakesh Mohan, a member of the Prime Minister's Economic Advisory Council, has said that process stopped around 2012 and that average tariffs rose from 2017 onwards. An analysis by the Institute of South Asian Studies noted that tariffs had been raised on products such as smartphones after 2014 to promote Make in India. In November 2019, India withdrew from the Regional Comprehensive Economic Partnership negotiations, after asking to move the tariff base year from 2014 to 2019. India's average applied tariff was reported at about 13.8 per cent in 2024, against 9.8 per cent for China and 3.4 per cent for the United States.</p>
+
+  <p>This is a more complicated story than simple protectionism. The smartphone success in Chapter 4 came under tariff protection plus subsidy, and there are strategic reasons to hesitate before opening up to a China-centred bloc. But a country that wants to join global supply chains needs cheap imported inputs and reliable access to foreign markets, and the same tariffs that nurture one assembly industry raise the costs of the garment, footwear and toy exporters that need to import fabric, machinery and components.</p>
+
+  <p>The recent turn deserves credit. India signed trade agreements with the UAE and Australia in 2022, with the EFTA group in 2024, and with the United Kingdom in July 2025. The UK agreement entered into force on 15 July 2026. Negotiations with the European Union, which began in 2007, stalled in 2013 and restarted in 2022, concluded on 27 January 2026, with signing targeted for the end of 2026. India's trade policy is now being opened up, after a pause of roughly a decade.</p>
+
+  <h3>The logistics puzzle</h3>
+  <p>One last item shows how hard it is to diagnose the problem. For years, the conventional wisdom held that India's logistics costs were 13 to 14 per cent of GDP, far above global norms, and that this was a hidden tax on manufacturing. In September 2025, a study by the National Council of Applied Economic Research for the Department for Promotion of Industry and Internal Trade, using surveys of more than 3,500 stakeholders, put the figure at 7.97 per cent of GDP for 2023-24. That is in the range reported for the United States (8.8 per cent), Germany (8 per cent) and South Korea (about 8 per cent), and well below China's 14.4 per cent.</p>
+
+  <p>This does not prove that India's exporters face no logistics problem. Commentators note that export and import logistics are still hampered by port bottlenecks and paperwork, which a national aggregate would not capture. But it does mean that the neat story, that high logistics costs explain India's manufacturing weakness, is at best incomplete. The honest conclusion is that the obstacles to factory growth are many, interlinked and not well measured, which is itself part of the problem.</p>
+
+  <h3>The pattern</h3>
+  <p>Put the pieces side by side. The EU trade talks took more than eighteen years from launch to conclusion. The labour codes took twenty-three years from recommendation to force. The Constitution amendment for GST was stuck in the Rajya Sabha in August 2015, and the tax came into force in July 2017. The land bill lapsed. The farm laws lasted fourteen months. Pending cases rise. India is a country in which large things can be decided but are hard to finish, because power is shared between the centre and the states, between Parliament and the street, between the executive and the courts. That is the price of a democracy of 1.4 billion people, and it is partly a virtue. But it is a price, and in the race for factories against countries that can decide and deliver quickly, it is a handicap.</p>
+</section>
+
+<div class="section-divider">— · —</div>
+
+<!-- CHAPTER 7 -->
+<section id="chapter-7" class="chapter-section">
+  <div class="chapter-number">CHAPTER 7</div>
+  <h2>The Great Exit (2025 and 2026)</h2>
+
+  <p>The phrase <em>foreign money is flying out of India</em> is partly right, partly misleading, and worth taking apart. Four different things are leaving, and they have different causes and different consequences: portfolio investors selling shares, foreign companies repatriating profits and exiting, Indian companies investing abroad, and wealthy individuals relocating. The reserves cushion, meanwhile, is far stronger than in any previous episode.</p>
+
+  <h3>Portfolio investors: the record</h3>
+  <p>The headline numbers are unambiguous.</p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Net foreign portfolio investment in Indian equities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2024</td>
+          <td>Net buying of ₹427 crore</td>
+        </tr>
+        <tr>
+          <td>2025</td>
+          <td>Net selling of ₹1.66 lakh crore</td>
+        </tr>
+        <tr>
+          <td>2026 (through 12 October)</td>
+          <td>Net selling of ₹3.08 lakh crore (about $32.7 billion)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The 2026 total is made up of net sales of ₹3.64 trillion (about $38.7 billion) in the secondary market, partly offset by net purchases of ₹56,485 crore (about $6 billion) in the primary market, where foreign funds continued to take part in new share offerings. March 2026 was the worst single month on record, with outflows of more than ₹1.1 lakh crore (reported at about $12 billion) as the Strait of Hormuz crisis hit. Foreign investors returned as net buyers in July and August, then sold ₹35,861 crore in September and another ₹47,417 crore in the first twelve days of October.</p>
+
+  <p>The effect on ownership has been steady. Foreign portfolio investors held 15.1 per cent of the market value of NSE-listed companies at the end of June 2026, the lowest in more than seventeen years, according to the exchange's own data. In the Nifty 50, their stake fell to 21.1 per cent, a 14.5-year low. A Motilal Oswal analysis put domestic institutions' share of the Nifty 500 at a record 21 per cent, above foreign institutions' record-low 17 per cent.</p>
+
+  <h3>Why they are selling</h3>
+  <p>Analysts offer several explanations, which are not mutually exclusive.</p>
+
+  <p>The first is an alternative. Centrum Broking's head of institutional equities said global money was chasing the AI and semiconductor trade in the United States, Taiwan and Korea, markets where India has little to offer. The second is the price of money in the dollar world: reports in October cited US bond yields above 5.2 per cent, which makes a risky emerging-market equity less attractive. The third is valuation: Indian shares have traded at a premium, and earnings growth was weak in some quarters. The fourth is the currency. The rupee set a record low of 92 per dollar on 28 January 2026, recovered to about 90.3 after the US trade deal of 2 February, then slid past 95 as the oil shock bit, reaching about 95.9 on 30 September. A falling currency eats the returns of foreign holders.</p>
+
+  <p>Then there is the geopolitical layer, which is a story of its own. In August 2025, the United States imposed 50 per cent tariffs on Indian goods (25 per cent plus a 25 per cent penalty for buying Russian oil). Sharply higher H-1B visa fees followed, and IT, a traditional favourite of foreign funds, saw the heaviest foreign selling of 2025 at $7.2 billion. On 2 February 2026, a bilateral deal cut the tariff to 18 per cent, with India committing to stop buying Russian oil and to move toward zero tariffs on US goods. Then the Strait of Hormuz closed in late February after US and Israeli strikes on Iran. Crude oil rose from about $69 a barrel in February to $113 in March and averaged $93 from March to August. India imports about 88 per cent of its crude oil, and about 90 per cent of its LPG imports pass through the strait. The Centre for Research on Energy and Clean Air estimated the extra cost of fossil fuel imports to India from March to August at about $22 billion gross and $14.4 billion net, or 0.38 per cent of GDP, about 1.4 days of national income. That is a manageable bill, but it hit when foreign investors were already looking for reasons to leave.</p>
+
+  <h3>Foreign direct investment: the quieter signal</h3>
+  <p>Portfolio flows are the mood of the market. Foreign direct investment, factories and companies, is the signal about the long term, and its numbers are more troubling.</p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Financial year</th>
+          <th>Net FDI equity inflow into India</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2022-23</td>
+          <td>$27.99 billion</td>
+        </tr>
+        <tr>
+          <td>2023-24</td>
+          <td>$10.13 billion</td>
+        </tr>
+        <tr>
+          <td>2024-25</td>
+          <td>$0.96 billion</td>
+        </tr>
+        <tr>
+          <td>2025-26</td>
+          <td>$6.95 billion</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>These are the government's own figures, given to the Rajya Sabha on 28 July 2026. The minister attributed the fall to higher repatriation and disinvestment by foreign investors and to rising outward investment by Indian businesses. Gross inflows have held up, but net FDI was negative for five consecutive months to January 2026, when it was minus $1.39 billion according to RBI data. Much of the foreign money that arrived in India's boom years of 2020-21, when net foreign investment peaked at $80.1 billion, came as private equity and venture capital, which is now exiting to cash out mature positions. Gross FDI outflows, a category that covers repatriation, disinvestment and Indian firms' investments abroad, rose from $29.35 billion in 2022-23 to $44.47 billion in 2023-24.</p>
+
+  <p>It would be wrong to read a negative net FDI as an alarm bell by itself. It partly reflects Indian companies becoming internationally ambitious, and it came with strong services exports and remittances. But it also means that capital, foreign and Indian, is finding more attractive uses outside the country than inside it. When a country's own firms prefer to build abroad, the investment climate at home deserves scrutiny.</p>
+
+  <h3>The people who leave</h3>
+  <p>The fourth outflow is human. Henley and Partners, an investment migration advisory firm, projected 5,100 millionaires leaving India in 2023, about 4,300 in 2024 (the third-highest net outflow after China and the UK) and about 3,500 in 2025, taking about $26 billion of wealth. Many go to the UAE and Singapore. Their reasons, according to the report, include safety, taxes, business opportunities, climate, schools and healthcare. Two caveats are in order. Henley's numbers are estimates from a firm that sells residency and citizenship services. And the same report notes that India creates far more new millionaires than it loses, and that many who leave keep business interests and homes in India.</p>
+
+  <p>A broader figure, reported from an answer given in Parliament, is that more than 16 lakh Indians have given up citizenship since 2011, including about 2.25 lakh in 2022 alone. Most are not billionaires. They are people who judged that a foreign passport offered a better life.</p>
+
+  <h3>Is this a crisis?</h3>
+  <p>No, not in the sense of 1991 or 2013. India's foreign exchange reserves stood at about $707 billion in early August 2026. The government's March 2026 economic review had put import cover at more than eleven months. Domestic investors, through systematic investment plans that hit a record ₹32,297 crore in August, have absorbed much of the foreign selling, and Indian equity indices were near record highs for much of the year. The market is much less dependent on foreigners than it was a decade ago.</p>
+
+  <p>But the Reserve Bank of India has noticed the pressure. On 7 October 2026, its Monetary Policy Committee raised the repo rate by 25 basis points to 5.50 per cent and changed its stance to calibrated tightening, the first rate rise since February 2023. Consumer price inflation was 4.8 per cent in August and the RBI projected 5.2 per cent for the year, citing higher food and fuel prices, West Asia risks and a weaker rupee. It still projected growth of 7.1 per cent. India is, in that sense, a strong economy being managed carefully while its capital account is under strain. The more important reading is the pattern: a country that offers 7 to 8 per cent growth, which should be a magnet for capital, is finding that growth alone does not keep money at home. Investors want a market with an AI story, stable policy, credible tax rules, an easy exit and a path to a larger industrial base. India, on the evidence of the numbers, is offering some of those but not yet all.</p>
+</section>
+
+<div class="section-divider">— · —</div>
+
+<!-- CHAPTER 8 -->
+<section id="chapter-8" class="chapter-section">
+  <div class="chapter-number">CHAPTER 8</div>
+  <h2>The Ledger of Mistakes</h2>
+
+  <p>You asked what India did wrong, politically, socially and economically, and not to hold back. Here is the ledger. Two rules govern it. The mistakes span governments of every colour, and I name which government was in office so the record can be checked. And I separate what the evidence shows from what I am arguing. Where it is my judgment, I say so.</p>
+
+  <h3>Political mistakes</h3>
+  <ul>
+    <li><strong>Reform by crisis, then drift by comfort:</strong> The 1991 reforms came because the country was out of dollars (Chapter 1). The boom that followed made reform feel optional. By the early 2010s, investment had stalled (Chapter 3), tariff cuts had stopped around 2012, as Rakesh Mohan has pointed out, and the Economic Survey itself was documenting policy paralysis over clearances. This was under the UPA government. The lesson is that India's political system reforms under duress and rests when it prospers, which is the wrong rhythm for a country that needs twenty years of consistent effort rather than six months of emergency.</li>
+    <li><strong>Policy by surprise:</strong> Two episodes stand out. In 2012, the UPA government amended the tax law retrospectively after losing a Supreme Court case (Chapter 6). On 8 November 2016, the NDA government demonetised 86.9 per cent of the currency by value, with the old notes losing legal tender status before the new currency had been issued, as the former chief statistician Pronab Sen noted at the time. The effect on measured growth was modest by the RBI's estimate and larger by others, and the dispute continues. What is not disputed is that both episodes taught businesses that rules could change overnight. A premium for that uncertainty is built into every investment decision.</li>
+    <li><strong>Reform by announcement, retreat by protest:</strong> The NDA government's 2014-15 ordinance amending the UPA's 2013 land law lapsed in August 2015. The farm laws of 2020 were repealed in November 2021. Whatever one thinks of the merits, this is a pattern of reforms that were launched without the consensus to hold them. A government that asks investors to commit for twenty years has shown that it can withdraw a flagship reform within fourteen months.</li>
+    <li><strong>A tariff turn:</strong> After two decades of lowering tariffs, India's average applied tariff has been reported at 13.8 per cent in 2024 against China's 9.8 per cent. Exit from the RCEP trade talks in 2019 and rising tariffs on products such as smartphones reflected real fears about Chinese imports. The cost was that India's labour-intensive exporters lost ground to Vietnam and Bangladesh in the same decade (Chapter 4). Whether that was the right trade-off is still debated, and the 2022-26 wave of trade agreements suggests the government now thinks it was not.</li>
+    <li><strong>Federalism unmanaged:</strong> Labour, land and power are shared between the centre and the states. The labour codes came into force centrally in November 2025, but rules are still pending in many states. Gujarat is the only one of five large industrial states analysed whose manufacturing share kept rising. That suggests that state capacity and state choices, rather than central laws, determine who gets the factories, and that India has not built the institutions to spread what works.</li>
+    <li><strong>Doubts about data:</strong> In 2019, Subramanian and Felman called for a Data Big Bang to restore trust in official statistics before better policy could be designed. In 2026 the government introduced a new GDP series with a 2022-23 base, with richer data and a revised method, which one report described as addressing concerns raised by the IMF. Better data is a good sign. But a country cannot manage what it cannot measure, and for years the evidence on consumption, jobs and informal activity was thin.</li>
+  </ul>
+
+  <h3>Social mistakes</h3>
+  <ul>
+    <li><strong>Schooling without learning:</strong> India enrolled almost every child, with 98.1 per cent of 6-to-14-year-olds in school in 2024, and failed to ensure they could read. About 23 per cent of Class 3 children in government schools could read a Class 2 text. This is the deepest social failure on the ledger, because it caps everything else: the quality of workers, the productivity of firms, the reach of technology.</li>
+    <li><strong>Leaving women out:</strong> Female labour force participation is 40.0 per cent against 79.1 per cent for men. Safety, social norms and unpaid care work explain much of the gap. A country that does not use half its potential workforce cannot reach the incomes of countries that do.</li>
+    <li><strong>A workforce stuck in tiny firms:</strong> Nearly two in five workers outside agriculture work in enterprises with fewer than ten people. Policy has long favoured small units through reservations and exemptions, which discourages firms from growing. This is a claim about incentives I consider well supported but cannot fully verify here, and I flag it as my judgment.</li>
+    <li><strong>A divided map:</strong> Learning outcomes in Kerala, Himachal Pradesh and Punjab are far better than in Bihar, Jharkhand and Uttar Pradesh, which will supply a large part of India's future workforce. National averages hide a country in which the demographic dividend is in some places ready to be spent and in others still unbanked.</li>
+    <li><strong>A question I cannot answer:</strong> Singapore treated social harmony as economic infrastructure and engineered it deliberately. India is far larger and more diverse, and its politics increasingly compete on identity. Investors and talented citizens respond to perceived safety and predictability, and Henley lists safety and security among the reasons millionaires leave. But I know of no study that measures the investment cost of social polarisation, and the question is contested. I put it on the ledger as an open item rather than a finding.</li>
+  </ul>
+
+  <h3>Economic mistakes</h3>
+  <ul>
+    <li><strong>The lending boom into long projects:</strong> Banks financed infrastructure at the top of the cycle, and the gross NPA ratio rose from 4.1 per cent in March 2014 to 11.46 per cent in March 2018. The resulting balance sheet damage cost a decade of investment.</li>
+    <li><strong>Overheating after 2008:</strong> Some economists argue that the government failed to reverse its fiscal expansion after the global financial crisis, and that this, combined with tight money, produced the 2012-13 inflation, current account deficit and bad loans. This is contested, but it is a serious argument.</li>
+    <li><strong>Financing the deficit with fickle money:</strong> In 2013, a record 4.8 per cent current account deficit was financed by portfolio flows and nearly broke the rupee. In 2026, with a deficit that forecasters had projected near 1 per cent of GDP but with 88 per cent of crude oil needs imported, the rupee fell past 95. India has not yet reduced its dependence on imported energy and volatile capital.</li>
+    <li><strong>A savings squeeze:</strong> Households fund a country's investment. India's net household financial savings were 15 per cent of GDP in the pandemic peak, then 5.1 per cent in 2022-23, 5.3 per cent in 2023-24 and about 6 per cent in 2024-25, while household debt rose from about 36 per cent of GDP in 2021 to 41.3 per cent by March 2025 on one RBI-based measure, and to 45.5 per cent by September 2025 on another. A narrower measure by Morgan Stanley puts household debt at 23.9 per cent of GDP, so the definitions matter. The trend, though, is of a consumption model increasingly funded by borrowing.</li>
+    <li><strong>Picking one product:</strong> The production-linked incentive scheme succeeded spectacularly with smartphones. The jury is out on whether it can be replicated for the dozens of other sectors that need to scale. A strategy that depends on one anchor company is a bet, not a transformation.</li>
+  </ul>
+
+  <h3>Which mistakes mattered most?</h3>
+  <p>This is my judgment, not an established ranking. I would put three at the top. First, the failure to build large-scale, labour-intensive export manufacturing, where tariffs, land, labour law and inputs all conspired against firms. Second, the learning and female participation deficit, which limits what any factory strategy can achieve. Third, the volatility of policy, which makes every investor price in the risk of a reversal. The balance sheet crisis was severe but has been repaired, and the macro shocks were mostly one-off. The three structural items are still with us.</p>
+</section>
+
+<div class="section-divider">— · —</div>
+
+<!-- CHAPTER 9 -->
+<section id="chapter-9" class="chapter-section">
+  <div class="chapter-number">CHAPTER 9</div>
+  <h2>The Other Ledger</h2>
+
+  <p>An account that listed only failures would be dishonest, and it would also be bad analysis, because India's successes contain the best clues about what could work. A country does not become the world's fastest-growing large economy by accident.</p>
+
+  <h3>What India built that the world envies</h3>
+  <ul>
+    <li><strong>A payments system that leads the world:</strong> The Unified Payments Interface, launched in August 2016, completed 24,162 crore transactions in FY2025-26, up from 1.78 crore in its first full year. In July 2026 it handled 2,366 crore transactions worth ₹29.88 lakh crore in a single month, about 66 crore a day. The IMF recognises it as the world's largest real-time payment system, with nearly 49 per cent of global real-time payment volume in 2025. It accounts for 84 per cent of India's digital payments, and 86 per cent of its merchant payments are under ₹500, which means it works for the street vendor as well as the supermarket. It is accepted in ten or eleven countries abroad, depending on the count. Few countries have built a public digital infrastructure that serves the poorest users as reliably as the richest.</li>
+    <li><strong>A bank system repaired:</strong> The gross NPA ratio of commercial banks fell from 11.46 per cent in March 2018 to about 2.1 per cent in September 2025, the lowest in several decades, according to the RBI. Net NPAs were 0.5 per cent, the capital adequacy ratio was 17.2 per cent and return on assets 1.4 per cent. A decade after the twin balance sheet crisis, the banks are in good health to lend, and credit grew 11.5 per cent.</li>
+    <li><strong>A crisis-proofed external position:</strong> Reserves of about $707 billion in August 2026 are not 1991's $1.2 billion. India absorbed the Hormuz shock, which the International Energy Agency called the largest supply disruption in the history of the global oil market, at a net cost of 0.38 per cent of GDP, and still grew 7.8 per cent in the April to June quarter. In 2013, with crude above $100 a barrel and a record current account deficit, the rupee fell to the edge of a crisis.</li>
+    <li><strong>A growth rate that is real:</strong> GDP grew 7.7 per cent in FY2025-26, according to the government's provisional estimate, with the services sector expanding strongly. The government's year-end review said India had overtaken Japan to become the fourth-largest economy, at about $4.18 trillion. The RBI projects 7.1 per cent for FY2026-27, despite raising rates.</li>
+    <li><strong>A domestic investor base:</strong> Perhaps the most underrated change is that India no longer depends on foreigners to hold its market. Monthly systematic investment plan contributions hit a record ₹32,297 crore in August 2026, and domestic institutions now own more of the Nifty 500 than foreign ones. A country with its own savers behind its stock market has more freedom than the India of 2013.</li>
+    <li><strong>A labour market that is slowly improving:</strong> In 2025, regular wage jobs rose to 23.6 per cent of employment from 22.4 per cent, agriculture's share fell from 44.8 per cent to 43.0 per cent, and the share of workers in firms with more than 20 employees rose from 10.8 per cent to 14.5 per cent. Youth unemployment fell from 2024. Female labour force participation is 40.0 per cent, still low, but as I recall the first annual survey in 2017-18 recorded a figure near 23 per cent, so the direction is right. I have not re-verified that earlier figure here.</li>
+    <li><strong>A learning rebound:</strong> The 2024 ASER found that Class 3 reading in government schools is the best in the survey's history, and that Class 5 reading had nearly returned to pre-pandemic levels. The gap is huge, but it has begun to close.</li>
+    <li><strong>A trade policy pivot:</strong> Since 2022, India has concluded or put into effect agreements with the UAE, Australia, EFTA and the United Kingdom, finished negotiations with the European Union in January 2026 after eighteen years, and reached a deal with the United States in February that cut tariffs from 50 per cent to 18 per cent. India's labour codes are law. After a decade of drift, the direction of policy has turned back toward openness.</li>
+    <li><strong>An electronics base:</strong> Chapter 4 described the transformation of mobile phone assembly. Whatever its limits, India now makes 99.2 per cent of the phones it sells and exports about $29 billion of them.</li>
+  </ul>
+
+  <h3>A pattern in the successes</h3>
+  <p>Here is the argument that I find most useful, and it is mine rather than an established finding. Look at what India does well: UPI, the banking clean-up, the reserves, the phone exports, even the trade agreements. Each was built by a small number of actors, often one agency or one scheme, working on a clear national target. Now look at what India does badly: schools, courts, land, labour inspection, small-firm credit, city administration. Each requires thousands of independent actors across many layers of government to change their behaviour at the same time.</p>
+
+  <p>India is excellent at platforms and poor at delivery. It can build a national payments rail in a few years and cannot yet teach its eight-year-olds to read in all its states. That explains why the economy can grow at 7.7 per cent while the factory ladder remains short. Growth in finance, digital services and capital-intensive industry can be driven from the centre. Growth in jobs, which is what the dream was about, depends on the humble machinery of the state at the level of the district and the school.</p>
+
+  <p>That is not a counsel of despair. It suggests where the effort should go.</p>
+</section>
+
+<div class="section-divider">— · —</div>
+
+<!-- CHAPTER 10 -->
+<section id="chapter-10" class="chapter-section">
+  <div class="chapter-number">CHAPTER 10</div>
+  <h2>Is There Hope?</h2>
+
+  <p>Start with what the dream was. It was never 7.7 per cent growth. India has had that. The dream was transformation: a country in which a farmer's daughter could get a factory job, a schooling that taught her to read, a wage that carried her family into the middle class and a state that treated her contracts, her land and her taxes with predictability. Judged by that standard, the dream has not materialised. Judged by the standard of what remains possible, it has not died either. It is late, and the lateness matters.</p>
+
+  <h3>The case for hope</h3>
+  <p>The foundations are better than at any point in India's history. The banks are clean, the reserves are about $707 billion, the economy grew 7.7 per cent last year and absorbed an oil shock without a crisis, and the market has a domestic savings base that foreign investors cannot withdraw. India has built a payments system that the rest of the world studies. It has proved with smartphones that it can attract the world's most demanding manufacturer, scale to hundreds of thousands of jobs, and employ women on the factory floor. The state of Gujarat shows that a large Indian state can have a manufacturing share of 35 per cent. Policy, after a decade of drift, is turning back toward openness, with trade agreements, labour codes and a new GDP series. Reading scores in government schools are inching up from a low base. And in a world that is rethinking its dependence on China, India has a window: it already holds 44 per cent of US smartphone imports.</p>
+
+  <h3>The case for caution</h3>
+  <p>The same evidence has a darker reading. Net FDI is a fraction of what it was three years ago. Private capital spending slipped in FY2025-26, with capex at 3.4 per cent of GDP. Foreign ownership of the stock market is at a seventeen-year low. India's apparel exports have not risen above their 2020 level, while Bangladesh and Vietnam took the shift out of China. Eighty-eight per cent of crude oil is imported, and the Hormuz crisis showed what that means. The World Bank's 2024 development report estimates that at current trends India would need about 75 years to reach a quarter of US income per head. China has indicated it will open wider to foreign firms. And the thing that makes India distinctive, the young workforce, is a window rather than a guarantee. A window closes.</p>
+
+  <p>There is also a brute piece of arithmetic. India has set itself the goal of becoming a developed country by 2047, when it will be a hundred years old. The World Bank's threshold for a high-income country is about $14,000 of income per head. From $2,760 today, reaching it in 21 years requires income per head to grow about 8 per cent a year in dollar terms, every year, for two decades. This is my own calculation, not an official estimate. Very few economies have sustained that pace, and India's headline GDP growth, which is not per head and not in dollars, is currently slightly below it. The goal is not impossible, but it requires India to behave less like an ordinary fast-growing economy and more like Korea or China did.</p>
+
+  <h3>Three possible futures</h3>
+  <p>These are my framing rather than forecasts.</p>
+  <ul>
+    <li><strong>Drift:</strong> Growth stays at 6 to 7 per cent, services and capital-intensive industry carry the economy, and jobs stay informal. Even at 5.5 per cent growth in income per head, India would take about a decade to reach the World Bank's upper-middle threshold of $4,636, and a weak rupee would slow that further, because the classification is in dollars. By then Vietnam would have been there for a decade.</li>
+    <li><strong>The Vietnam path:</strong> India decides that manufacturing for export is the priority and organises everything around it: input tariffs, trade deals, port and customs reform, industrial parks, state labour rules, women's participation. The smartphone story becomes the garment story, the footwear story, the electronics components story. This path gives jobs. It is also the hardest, because it requires dozens of states and agencies to change together.</li>
+    <li><strong>The capital-light path:</strong> India leans into what it does well, digital platforms, financial services, global capability centres and IT, and uses the revenue to fund welfare. This produces rich pockets, strong growth and recurring frustration among young people who do not qualify for the jobs. It can be a stable equilibrium. It is not the dream.</li>
+  </ul>
+
+  <h3>What it would take</h3>
+  <p>This is a list of conditions, drawn from the diagnosis in the earlier chapters. It reflects my judgment, and others will weight it differently.</p>
+  <ol>
+    <li><strong>Lower the cost of inputs and of crossing a border:</strong> Cut tariffs on inputs for exporters, and reduce paperwork at ports and customs. The country's own logistics study suggests that national logistics costs are not the problem, but export clearance may be.</li>
+    <li><strong>Finish the trade agreements:</strong> Sign and ratify the EU deal, implement the US and UK arrangements, and conclude the EU investment protection agreement, which is still not agreed.</li>
+    <li><strong>Build plug-and-play parks:</strong> Vietnam attracted foreign factories with ready-made industrial parks and supplier clusters. India has one Gujarat and needs many.</li>
+    <li><strong>Get the labour codes working everywhere:</strong> Central rules exist. The big states' rules decide whether the reform becomes real.</li>
+    <li><strong>Make every eight-year-old a reader:</strong> The learning rebound shows what is possible, and the effort needs to concentrate on Uttar Pradesh, Bihar and Jharkhand.</li>
+    <li><strong>Bring women into work:</strong> Safe transport, childcare and workplaces designed for women. The electronics supply chain is already showing the way.</li>
+    <li><strong>Fix the enforcement chain:</strong> Faster commercial courts, quicker tax appeals, and a public commitment never to legislate retrospectively. The e-courts programme's third phase has about ₹7,210 crore behind it. It needs to translate into a lower pendency, not just digitised files.</li>
+    <li><strong>Hold reforms once made:</strong> Consult states and affected groups beforehand, and then stay the course. A reform that can be withdrawn is a reform that investors will not trust.</li>
+    <li><strong>Cut oil exposure:</strong> Clean power capacity added since 2020 saved importing countries an estimated $36 billion in fossil-fuel imports in the first five months of the Hormuz crisis, and India was among the significant beneficiaries. More of the same is insurance.</li>
+    <li><strong>Keep measuring honestly:</strong> Better data on jobs, consumption and informal activity turn debates into decisions.</li>
+  </ol>
+
+  <h3>What to watch</h3>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Indicator</th>
+          <th>Latest reading</th>
+          <th>What real improvement would look like</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Net FDI</td>
+          <td>$6.95 billion in FY2025-26, after $0.96 billion in FY2024-25</td>
+          <td>A sustained recovery toward the $28 billion of FY2022-23</td>
+        </tr>
+        <tr>
+          <td>Manufacturing share of value added (new series)</td>
+          <td>16.3 per cent</td>
+          <td>Continued rise toward the government's 25 per cent target</td>
+        </tr>
+        <tr>
+          <td>Private capex to GDP</td>
+          <td>3.4 per cent in FY2025-26</td>
+          <td>A reversal of the decline</td>
+        </tr>
+        <tr>
+          <td>Foreign ownership of NSE-listed firms</td>
+          <td>15.1 per cent (June 2026)</td>
+          <td>Stabilisation, then recovery</td>
+        </tr>
+        <tr>
+          <td>Female labour force participation</td>
+          <td>40.0 per cent (2025)</td>
+          <td>Steady gains, especially in urban areas</td>
+        </tr>
+        <tr>
+          <td>Class 3 reading, government schools</td>
+          <td>23.4 per cent (2024)</td>
+          <td>Continued gains in the next ASER</td>
+        </tr>
+        <tr>
+          <td>EU trade agreement</td>
+          <td>Concluded January 2026, signing targeted by end-2026</td>
+          <td>Signature and ratification</td>
+        </tr>
+        <tr>
+          <td>State labour rules</td>
+          <td>Pending in many states</td>
+          <td>Notified in all large industrial states</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Is it a model, a warning or an unfinished story?</h3>
+  <p>The earlier reports in this series told of countries that decided. China decided to industrialise and organised a state around it. Korea decided never to be poor again, and drove its companies hard. Singapore decided that governance was its only resource and built it. India is different in kind. It is a democracy of 1.4 billion people in which every major decision is contested, shared between governments, and subject to reversal. That makes India slower. It may also make what India builds more durable, because consent, once given, is hard to withdraw.</p>
+
+  <p>So the honest verdict is neither triumph nor tragedy. India has done the things that can be done from the centre, and done several of them brilliantly. It has not yet done the things that require the whole country to change at once. The foreign money leaving in 2026 is a message, not a verdict. It says that growth alone is no longer enough to hold capital, and that the market is waiting to see whether the next five years bring the factories, the schools and the predictability that the last fifteen did not. The dream is not gone. It is overdue, and every year it waits makes it more expensive.</p>
+</section>
+
+<div class="section-divider">— · —</div>
+
+<!-- SOURCES & NOTES -->
+<section id="sources" class="chapter-section">
+  <div class="chapter-number">APPENDIX</div>
+  <h2>Sources and Verification Notes</h2>
+
+  <p><em>As of 23 October 2026. Figures were taken from the excerpts returned by web searches, not from full-page reads of every source, so before publishing any number that matters, check it against the primary source (NSDL for foreign flows, RBI, MoSPI's labour force survey, ASER, the National Judicial Data Grid).</em></p>
+
+  <h4>Claims from memory or general knowledge, not re-verified here</h4>
+  <ul>
+    <li>That Parliament repealed the retrospective tax provision in 2021 (Chapter 6).</li>
+    <li>That the first annual labour force survey of 2017-18 showed female participation near 23 per cent (Chapter 9).</li>
+    <li>That GST came into force in July 2017, that IL&FS collapsed in 2018 and that the national lockdown came in 2020 (Chapter 3).</li>
+    <li>That women make up most of Bangladesh's garment workforce (Chapter 5).</li>
+    <li>The framing that policy reversals make investors discount reform, the claim that small-unit policy discourages firm growth, and the ranking of mistakes in Chapter 8 are my arguments, flagged in the text.</li>
+  </ul>
+
+  <h4>Where sources disagree</h4>
+  <ul>
+    <li><strong>Manufacturing share of GDP:</strong> 15.9 per cent in 2023-24 (government, constant prices), about 13 per cent in 2024 (World Bank database), 16.3 per cent (new GDP series). Different bases and methods.</li>
+    <li><strong>Apparel exports:</strong> the ICRIER figures, as reported in trade press, put India's 2025 exports at $15.7 billion and Bangladesh's at $51 billion. Another report puts India's at about $16.3 billion. Treat the exact values as approximate; the ranking is consistent.</li>
+    <li><strong>Household debt:</strong> 23.9 per cent of GDP (Morgan Stanley, narrow), 41.3 per cent (March 2025) and 45.5 per cent (September 2025) on broader measures.</li>
+    <li><strong>Hormuz dependence:</strong> between about 30 per cent and 41 per cent of India's crude imports, depending on the period.</li>
+    <li><strong>Monthly foreign portfolio flows:</strong> differ slightly between outlets. The rupee level of 95.9 on 30 September comes from a market-data website.</li>
+    <li><strong>Henley's millionaire migration figures:</strong> are estimates and differ between editions.</li>
+    <li><strong>Demonetisation's growth impact:</strong> about 0.33 percentage points by the RBI's preliminary estimate; larger by other economists.</li>
+  </ul>
+
+  <h4>My own arithmetic</h4>
+  <p>The 9 per cent versus 6.3 per cent comparison (Chapter 2), the $4,300 income figure, the ten-year path to the upper-middle threshold and the 8 per cent a year needed for the 2047 goal (Chapter 10) are calculations I made from the sourced inputs. They are illustrations, not forecasts.</p>
+
+  <h4>Sources</h4>
+  <p><strong>Prologue and Chapter 1:</strong> FPI outflows, <em>Business Standard</em> · FPI outflows, <em>The Statesman</em> · World Bank income classification FY27 · India and China income per head, <em>Deccan Herald</em> · World Development Report 2024 on the middle-income trap, <em>Tribune</em> · FY26 growth estimate · OCBC on April to June 2026 growth · 1991 balance of payments crisis · Gold in 1991 and reserves today, <em>Business Today</em> · Lok Sabha record on gold, 18 July 1991</p>
+
+  <p><strong>Chapters 2 and 3:</strong> Can India grow at 8 to 9 per cent, <em>The Hindu</em> · Economic Survey 2008-09, chapter 2 · ISAS on the Economic Survey 2007-08 · Growth and savings, 2002 to 2012 · India's Great Slowdown, Subramanian and Felman · World Bank on investment slowdown, via NIPFP · Economic Survey 2014-15 on stalled projects · Chhibber, <em>It's the economy, stupid</em> · Investment ratio, CEIC data cited by Arun Kumar · 2013 taper tantrum and current account deficit · Banking sector revival, PIB · RBI on demonetisation · Demonetisation, <em>Business Today</em> · Private capex FY26</p>
+
+  <p><strong>Chapters 4 and 5:</strong> Make in India and manufacturing share · Net assessment of Indian manufacturing, <em>Ideas for India</em> · Manufacturing in industrialised states, <em>Data for India</em> · Apparel race, ICRIER report coverage · World Bank on India's export shares · SBI Research on PLFS 2025 · iPhone exports, <em>Business Today</em> · Smartphone exports record · Apple ecosystem jobs · ASER 2024, <em>Rural India Online</em> · PLFS Annual Report 2025, MoSPI · PLFS 2025 key indicators · Employment scenario, July 2026</p>
+
+  <p><strong>Chapter 6:</strong> Pending cases, Rajya Sabha, July 2026 · Pendency in subordinate courts, July 2026 · Pendency at end-2025, IANS · Vodafone arbitration, Khaitan and Co · Vodafone, retro tax demand · PCA decision explainer · Labour codes 2026 · Labour codes, key reforms · ISAS on the labour codes · Land ordinance lapse, <em>Business Today</em> · Land ordinance timeline · Farm laws timeline, <em>Deccan Herald</em> · Farm laws repeal bill passed, <em>LiveLaw</em> · India and RCEP, ISAS · Tariff reduction, Rakesh Mohan · Applied tariffs, 2024 · Logistics cost study, PIB · Logistics cost comparators · India-EU FTA concluded · India-EU FTA and UK CETA timelines</p>
+
+  <p><strong>Chapters 7 to 10:</strong> Record foreign selling, 2026, with monthly detail · Rupee and US trade deal, <em>Trading Economics</em> · FPI ownership, NSE data · Domestic versus foreign institutional ownership, Motilal Oswal · Net FDI, Rajya Sabha reply · Net FDI negative five months, RBI data · Capital outflows and FDI composition · <em>Indian Express</em> editorial summary, May 2026 · Hormuz crisis cost to India, CREA · How India survived the oil shock, ORF · Dependence on the Strait of Hormuz · US tariffs and Indian equities, 2025 · RBI policy, 7 October 2026 · Millionaire migration, <em>Scroll</em> · Millionaire migration, 2025 estimate · Citizenship renunciation, as reported · Household savings and debt · Household debt, Morgan Stanley measure · UPI at ten years · Bank health, RBI trend and progress report · Systematic investment plan record, FPI and DII data</p>
+</section>
+
+<div class="section-divider">— ✦ —</div>
+
+<footer>
+  <p><strong>India's Unfinished Century: The Dream That Stalled</strong> · A Vikas Gaur Report · October 23, 2026</p>
+  <p>Part of the <a href="index.html">Vikas's Reports</a> series — long-form research on economics, history, and geopolitics.</p>
+</footer>
+
+</div>
+
+<script>
+// Progress Bar
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = docHeight > 0 ? (scrollTop / docHeight) * 100 + '%' : '0%';
+});
+
+// Dark/Light Mode Toggle
+const toggle = document.getElementById('theme-toggle');
+toggle.addEventListener('click', () => {
+  const isLight = document.documentElement.classList.toggle('light');
+  toggle.textContent = isLight ? '☀️' : '🌙';
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+});
+if (localStorage.getItem('theme') === 'light') {
+  document.documentElement.classList.add('light');
+  toggle.textContent = '☀️';
+}
+
+// TOC Scroll Spy
+const sections = document.querySelectorAll('.chapter-section');
+const tocLinks = document.querySelectorAll('#toc-sidebar a');
+const toc = document.getElementById('toc-sidebar');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      tocLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + entry.target.id) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) toc.classList.add('visible');
+  else toc.classList.remove('visible');
+}, { passive: true });
+</script>
+</body>
+</html>
